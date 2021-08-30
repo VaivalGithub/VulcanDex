@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/Design-Link.txt
 
 # testing
 /coverage
@@ -22,3 +23,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .idea
+Design-Link.txt
+Design-Link.txt
