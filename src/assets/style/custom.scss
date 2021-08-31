@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap');
+body {
+    background: url("../images/bg-body.png") no-repeat center center / cover;
+    font-family: 'Kanit', sans-serif;
+    line-height: 1.2;
+    font-weight: 400;
+    font-size: 24px;
+    color: #888888;
+}
+
+h1 {
+    font-family: 'Kanit', sans-serif;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 72px;
+    color: #fff;
+}
+h3 {
+    font-family: 'Kanit', sans-serif;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 48px;
+    color: #fff;
+    position: relative;
+    &:before {
+        background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='22.916' height='44.023' viewBox='0 0 22.916 44.023'><path fill='none' stroke='#000' opacity='1' stroke-linecap='round' stroke-linejoin='round' stroke-width='4px' d='M969.2,1012.982h23.916l-19.406,18.091-19.791-18.091' transform='translate(-1010.156 995.118) rotate(-90)'/></svg>") no-repeat right top;
+        width: 15px;
+        height: 15px;
+        display: block;
+        content: "";
+    }
+}
+h4 {
+    font-family: 'Kanit', sans-serif;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 36px;
+    color: #FA7005;
+}
+h5 {
+    font-family: 'Kanit', sans-serif;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 24px;
+    color: #888888;
+}
+h6 {
+    font-family: 'Kanit', sans-serif;
+    line-height: 1;
+    font-weight: 500;
+    font-size: 14px;
+    color: #FA7005;
+}
+.OrangeColor {
+    color: #EB7527;
+}
+.fw-semibold {
+    font-weight: 700;
+}
+.BtnOrange {
+    border: none;
+    border-bottom: solid 2px #CE5A00;
+    background-color: #FA7005;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+    min-height: 48px;
+    &:hover {
+        background-color: #CE5A00;
+        color: #fff;
+    }
+}
+.BtnBorderOrange {
+    border: solid 2px #FA7005;
+    background-color: transparent;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #FA7005;
+    min-height: 48px;
+    box-shadow: 0px 2px #CE5A00;
+    &:hover {
+        background-color: #CE5A00;
+        border-color:#CE5A00;
+        color: #fff;
+    }
+}
+.MenuLinks {
+    padding-top: 12px;
+    a {
+        font-weight: 400;
+        font-size: 16px;
+        &.ACTIVE {
+            color: #EB7527;
+        }
+    }
+    &.Second {
+        padding-top: 0;
+        a {
+            width: 110px;
+        }
+    }
+}
+
+#SideBar {
+    min-width: 260px;
+    max-width: 260px;
+    color: #7487A9;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    background-color: #191817;
+    li {
+        a {
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 16px;
+            color: #fff;
+            &:hover,
+            &.active {
+                color: #EB7527;
+            }
+        }
+        &.dropdown {
+            .dropdown-toggle {
+                &:after {
+                    margin-left: auto;
+                }
+            }
+            .dropdown-menu {
+                transform: none !important;
+                li {
+                    a {
+                        padding-left: 33px;
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: #fff;
+                        &:hover,
+                        &.active {
+                            color: #EB7527;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+#ContentArea {
+    width: calc(100% - 260px);
+    min-height: calc(100vh - 93px);
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    .HomePage {
+        .BtnOrange,
+        .BtnBorderOrange {
+            min-width: 175px;
+        }
+    }
+    .StatisticsBox {
+        .WidthBox {
+            max-width: 750px;
+        }
+        .StatusBox {
+            background-color: #191817;
+            border-radius: 30px;
+            box-shadow: 0 1px 0px 0px #CE5A00;
+            .IconBox {
+                background-color: #282B30;
+                border-radius: 8px;
+                width: 100px;
+                height: 100px;
+            }
+        }
+    }
+    .TradeBox {
+        background-color: #191817;
+    }
+    .SyrupPool {
+        .BorderRight {
+            border-right:solid 1px #191817;
+        }
+    }
+    .PrizeBox {
+        background-color: #191817;
+        border-radius: 30px;
+        .Prizes {
+            background-color: #282B30;
+            border-radius: 30px;
+            .IconBox {
+                background-color: #191817;
+                border-radius: 8px;
+                width: 100px;
+                height: 100px;
+            }
+        }
+    }
+    .BuyPyr {
+        background-color: #191817;
+        .BorderRight {
+            border-right:solid 1px #282B30;
+        }
+    }
+    .HowToStart {
+        .WidthBox {
+            max-width: 650px;
+        }
+    }
+}
+.BgLogoFire {
+    background-color: #191817;
+    width: 100px;
+    height: 100px;
+}
+
+/*--- Responsive ---*/
+@media only screen and (max-width: 1699px) {
+    h1 {
+        font-size: 64px;
+    }
+}
+@media only screen and (max-width: 1599px) {
+    body {
+        font-size: 20px;
+    }
+    h1 {
+        font-size: 58px;
+    }
+    h3 {
+        font-size: 40px;
+    }
+    h4 {
+        font-size: 30px;
+    }
+}
+@media only screen and (max-width: 1439px) {
+    h1 {
+        font-size: 50px;
+    }
+}
+@media only screen and (max-width: 1359px) {
+}
+@media only screen and (max-width: 1199.98px) {
+    body {
+        font-size: 18px;
+    }
+    h1 {
+        font-size: 40px;
+    }
+    #ContentArea  {
+        .HomePage {
+            .BtnBorderOrange,
+            .BtnOrange {
+                min-width: 135px;
+                font-size: 14px;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 991.98px) {}
+@media only screen and (max-width: 767.98px) {}
+@media only screen and (max-width: 575.98px) {}
+@media only screen and (max-width: 479px) {}

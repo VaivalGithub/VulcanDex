@@ -1,0 +1,259 @@
+import React, {Suspense} from 'react'
+import {Route, Switch} from 'react-router-dom'
+import styled from 'styled-components'
+import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
+import AddressClaimModal from '../components/claim/AddressClaimModal'
+import Header from '../components/Header'
+import Polling from '../components/Header/Polling'
+import URLWarning from '../components/Header/URLWarning'
+import Popups from '../components/Popups'
+import Web3ReactManager from '../components/Web3ReactManager'
+import {ApplicationModal} from '../state/application/actions'
+import {useModalOpen, useToggleModal} from '../state/application/hooks'
+import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
+import AddLiquidity from './AddLiquidity'
+import {
+    RedirectDuplicateTokenIds,
+    RedirectOldAddLiquidityPathStructure,
+    RedirectToAddLiquidity
+} from './AddLiquidity/redirects'
+// import Earn from './Earn'
+import Manage from './Earn/Manage'
+// import MigrateV1 from './MigrateV1'
+// import MigrateV1Exchange from './MigrateV1/MigrateV1Exchange'
+import RemoveV1Exchange from './MigrateV1/RemoveV1Exchange'
+import Pool from './Pool'
+import PoolFinder from './PoolFinder'
+import RemoveLiquidity from './RemoveLiquidity'
+import Home from './home'
+import {RedirectOldRemoveLiquidityPathStructure} from './RemoveLiquidity/redirects'
+import Swap from './Swap'
+// import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
+import {RedirectPathToSwapOnly, RedirectToSwap} from './Swap/redirects'
+
+// import Vote from './Vote'
+// import VotePage from './Vote/VotePage'
+
+const AppWrapper = styled.div`
+`
+
+const HeaderWrapper = styled.div`
+  ${({theme}) => theme.flexRowNoWrap}
+  width: 100%;
+  justify-content: space-between;
+`
+const SideBar = styled.div`
+`
+const ContentArea = styled.div`
+`
+const BodyWrapper = styled.div`
+
+`
+
+const Marginer = styled.div`
+  margin-top: 5rem;
+`
+
+function TopLevelModals() {
+    const open = useModalOpen(ApplicationModal.ADDRESS_CLAIM)
+    const toggle = useToggleModal(ApplicationModal.ADDRESS_CLAIM)
+    return <AddressClaimModal isOpen={open} onDismiss={toggle}/>
+}
+
+export default function App() {
+    const [show, setShow] = React.useState();
+    return (
+        <Suspense fallback={null}>
+            <Route component={GoogleAnalyticsReporter}/>
+            <Route component={DarkModeQueryParamReader}/>
+            <AppWrapper>
+                <URLWarning/>
+                {/*<button onClick={() => setShow(!show)}>
+                    Toggle
+                </button>*/}
+                <HeaderWrapper className="Header">
+                    <Header/>
+                </HeaderWrapper>
+                <BodyWrapper className="d-flex align-items-stretch">
+                    <SideBar id="SideBar" className={`d-flex flex-column p-4 ${show ? "active" : ""}`}>
+                        <ul className="list-unstyled mb-0">
+                            <li className="mb-4">
+                                <a className="active" href="#">
+                                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <g transform="translate(-10675 291)">
+                                            <path fill="#fa7005" d="M19.483,8.709h0L11.314.54a1.843,1.843,0,0,0-2.607,0L.543,8.7l-.008.008a1.843,1.843,0,0,0,1.227,3.141l.057,0h.326v6.011A2.16,2.16,0,0,0,4.3,20.024H7.5a.587.587,0,0,0,.587-.587V14.724a.985.985,0,0,1,.984-.984h1.885a.985.985,0,0,1,.984.984v4.713a.587.587,0,0,0,.587.587h3.2a2.16,2.16,0,0,0,2.158-2.157V11.855h.3a1.844,1.844,0,0,0,1.3-3.146Zm0,0"
+                                                  transform="translate(10676.742 -288.696)"/>
+                                            <rect fill="none" width="24" height="24"
+                                                  transform="translate(10675 -291)"/>
+                                        </g>
+                                    </svg>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <li className="dropdown mb-4">
+                                <a className="dropdown-toggle d-flex align-items-center" href="#" id="TradeSubMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <g transform="translate(-10649 291)">
+                                            <g transform="translate(10651.491 -288.696)">
+                                                <path fill="#fa7005"
+                                                      d="M137.564,130.334a.4.4,0,0,0-.782,0v2.336H136v8.009h.782v2a.4.4,0,0,0,.782,0v-2h.782V132.67h-.782Zm0,0"
+                                                      transform="translate(-130.525 -125.662)"/>
+                                                <path fill="#fa7005"
+                                                      d="M277.564,90.334a.4.4,0,0,0-.782,0V92.67H276v8.009h.782v2a.4.4,0,0,0,.782,0v-2h.782V92.67h-.782Zm0,0"
+                                                      transform="translate(-265.05 -86.996)"/>
+                                                <path fill="#fa7005"
+                                                      d="M-2.436.334A.366.366,0,0,0-2.827,0a.366.366,0,0,0-.391.334V2.67H-4v8.009h.782v2a.366.366,0,0,0,.391.334.366.366,0,0,0,.391-.334v-2h.782V2.67h-.782Zm0,0"
+                                                      transform="translate(4)"/>
+                                                <path fill="#fa7005"
+                                                      d="M418.346,212.67h-.782v-2.336a.4.4,0,0,0-.782,0v2.336H416v8.009h.782v2a.4.4,0,0,0,.782,0v-2h.782Zm0,0"
+                                                      transform="translate(-399.574 -202.992)"/>
+                                            </g>
+                                            <rect fill="none" width="24" height="24" transform="translate(10649 -291)"/>
+                                        </g>
+                                    </svg>
+                                    <span>Trade</span>
+                                </a>
+                                <ul className="dropdown-menu bg-transparent position-static p-0" aria-labelledby="TradeSubMenu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                            <li className="mb-4">
+                                <a href="#">
+                                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="24.023" height="24" viewBox="0 0 24.023 24">
+                                        <g transform="translate(-10621 291)">
+                                            <g transform="translate(10621.455 -288.696)">
+                                                <path fill="#fa7005"
+                                                      d="M5.524,195a5.524,5.524,0,1,0,5.524,5.524A5.524,5.524,0,0,0,5.524,195Zm0,7.6A2.071,2.071,0,1,1,7.6,200.524,2.074,2.074,0,0,1,5.524,202.6Zm0,0"
+                                                      transform="translate(0 -186.024)"/>
+                                                <path fill="#fa7005"
+                                                      d="M105.69,300a.69.69,0,1,0,.69.69A.691.691,0,0,0,105.69,300Zm0,0"
+                                                      transform="translate(-100.167 -286.191)"/>
+                                                <path fill="#fa7005"
+                                                      d="M363.381,47.071a.691.691,0,0,1,.69-.69V45A2.074,2.074,0,0,0,362,47.071v2.071h1.381Zm0,0"
+                                                      transform="translate(-345.337 -42.929)"/>
+                                                <path fill="#fa7005"
+                                                      d="M19.841,141.9a5.519,5.519,0,0,1,7.544-2.02v-.742a2.765,2.765,0,0,0-2.762-2.762H15.3a8.278,8.278,0,0,0-9.848.513l.879,1.065a6.906,6.906,0,0,1,11.16,3.946Zm0,0"
+                                                      transform="translate(-5.198 -128.786)"/>
+                                                <path fill="#fa7005"
+                                                      d="M271.648,315H270v2.071h1.516a5.545,5.545,0,0,1,.132-2.071Zm0,0"
+                                                      transform="translate(-257.572 -300.5)"/>
+                                                <path fill="#fa7005"
+                                                      d="M336.143,255a4.143,4.143,0,1,0,4.143,4.143A4.143,4.143,0,0,0,336.143,255Zm0,4.833a.69.69,0,1,1,.69-.69A.69.69,0,0,1,336.143,259.833Zm0,0"
+                                                      transform="translate(-316.718 -243.262)"/>
+                                                <path fill="#fa7005"
+                                                      d="M46.381,5.059a9.646,9.646,0,0,1,7.046,1.156h2.69L54.848,1.381h1.2V0H45V1.381h1.381Zm0,0"
+                                                      transform="translate(-42.929)"/>
+                                            </g>
+                                            <rect fill="none" width="24" height="24" transform="translate(10621 -291)"/>
+                                        </g>
+                                    </svg>
+                                    <span>Farms</span>
+                                </a>
+                            </li>
+                            <li className="mb-4">
+                                <a href="#">
+                                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <g transform="translate(-10597 291)">
+                                            <g transform="translate(10603.531 -288.696)">
+                                                <g transform="translate(0)">
+                                                    <path fill="#fa7005"
+                                                          d="M24.3,4.781a2.145,2.145,0,0,1,.655,4.044.358.358,0,1,0,.322.639A2.861,2.861,0,0,0,24.4,4.073a.358.358,0,1,0-.1.708Z"
+                                                          transform="translate(-15.412 -2.614)"/>
+                                                    <path fill="#fa7005"
+                                                          d="M2.224,22.108a.358.358,0,1,1-.436.565,6.3,6.3,0,0,1-.633-.558l.24,2.26H2.86a.358.358,0,1,1,0,.715H1.072a.332.332,0,0,0-.247.1.339.339,0,0,0-.111.254.358.358,0,0,0,.358.358h9.3a.332.332,0,0,0,.247-.1.339.339,0,0,0,.111-.254.358.358,0,0,0-.358-.358H4.648a.358.358,0,1,1,0-.715h5.4l.24-2.26a6.3,6.3,0,0,1-.633.558.357.357,0,0,1-.436-.565,5.721,5.721,0,0,0-.293-9.268.145.145,0,0,1-.032-.018,5.021,5.021,0,0,0-.679-.39.715.715,0,0,1-.4-.533L7.366,9H4.076l-.447,2.9a.718.718,0,0,1-.4.533,5.718,5.718,0,0,0-1.008,9.676Zm6.887-6.526a.358.358,0,1,1,.615-.361,4.647,4.647,0,0,1-6.365,6.365.358.358,0,1,1,.361-.615,3.935,3.935,0,0,0,5.388-5.388ZM2.435,14.3a4.638,4.638,0,0,1,5.646-.719.358.358,0,1,1-.361.615A3.935,3.935,0,0,0,2.331,19.58a.358.358,0,0,1-.125.49.368.368,0,0,1-.182.05.358.358,0,0,1-.308-.179A4.638,4.638,0,0,1,2.435,14.3Z"
+                                                          transform="translate(0 -5.782)"/>
+                                                    <path fill="#fa7005"
+                                                          d="M10.358,2.5h3.576a.358.358,0,0,0,.358-.358V1.788H12.5a.358.358,0,1,1,0-.715h1.788V.358A.358.358,0,0,0,13.933,0H10.358A.358.358,0,0,0,10,.358v.715h1.073a.358.358,0,1,1,0,.715H10v.358A.358.358,0,0,0,10.358,2.5Z"
+                                                          transform="translate(-6.424)"/>
+                                                </g>
+                                            </g>
+                                            <rect fill="none" width="24" height="24"
+                                                  transform="translate(10597 -291)"/>
+                                        </g>
+                                    </svg>
+                                    <span>Pools</span>
+                                </a>
+                            </li>
+                            <li className="mb-4">
+                                <a href="#">
+                                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <g transform="translate(-10572 291)">
+                                            <path fill="#fa7005"
+                                                  d="M6.231,22.561a6.231,6.231,0,1,0,6.231,6.231A6.238,6.238,0,0,0,6.231,22.561Zm0,10.8a4.57,4.57,0,1,1,4.57-4.57A4.575,4.575,0,0,1,6.231,33.362Zm0-7.062a2.493,2.493,0,1,0,2.493,2.493A2.5,2.5,0,0,0,6.231,26.3Zm0,3.323a.831.831,0,1,1,.831-.831A.832.832,0,0,1,6.231,29.623Zm15.038-.831a6.235,6.235,0,0,1-8.292,5.882.831.831,0,1,1,.549-1.568,4.57,4.57,0,1,0-.07-8.6.831.831,0,1,1-.575-1.559,6.235,6.235,0,0,1,8.388,5.848ZM4.434,20.609a6.232,6.232,0,0,1,12.4-.048.831.831,0,0,1-1.652.177,4.57,4.57,0,0,0-9.091.035.831.831,0,0,1-.826.749q-.041,0-.083,0a.831.831,0,0,1-.745-.909Zm8.681.374a.831.831,0,0,1-.745.909c-.028,0-.056,0-.083,0a.831.831,0,0,1-.826-.749.831.831,0,0,0-1.651-.021.831.831,0,0,1-1.649-.206,2.493,2.493,0,0,1,4.954.062Zm2.511,8.4a.831.831,0,0,0-.9-1.358.831.831,0,0,1-.622-1.541,2.493,2.493,0,1,1,0,4.622.831.831,0,0,1,.622-1.541A.83.83,0,0,0,15.626,29.38Z"
+                                                  transform="translate(10573.52 -303.696)"/>
+                                            <rect fill="none" width="24" height="24"
+                                                  transform="translate(10572 -291)"/>
+                                        </g>
+                                    </svg>
+                                    <span>Collectibles</span>
+                                </a>
+                            </li>
+                            <li className="mb-4">
+                                <a href="#">
+                                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <g transform="translate(-10547 291)">
+                                            <g transform="translate(10551.295 -288.696)">
+                                                <g transform="translate(3.425 0)">
+                                                    <ellipse fill="#fa7005" cx="4.479" cy="4.479" rx="4.479" ry="4.479"/>
+                                                </g>
+                                                <g transform="translate(0 10.012)">
+                                                    <path fill="#fa7005"
+                                                          d="M61.8,256a7.9,7.9,0,0,0-7.9,7.9A2.108,2.108,0,0,0,56,266.012H67.6A2.108,2.108,0,0,0,69.7,263.9,7.9,7.9,0,0,0,61.8,256Z"
+                                                          transform="translate(-53.895 -256)"/>
+                                                </g>
+                                            </g>
+                                            <rect fill="none" width="24" height="24" transform="translate(10547 -291)"/>
+                                        </g>
+                                    </svg>
+                                    <span>Profile</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </SideBar>
+                    <ContentArea id="ContentArea">
+                        <Popups/>
+                        <Polling/>
+                        <TopLevelModals/>
+                        <Web3ReactManager>
+                            <Switch>
+                                <Route exact strict path="/swap" component={Swap}/>
+                                {/* <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} /> */}
+                                <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap}/>
+                                <Route exact strict path="/send" component={RedirectPathToSwapOnly}/>
+                                <Route exact strict path="/find" component={PoolFinder}/>
+                                <Route exact strict path="/pool" component={Pool}/>
+                                {/* <Route exact strict path="/uni" component={Earn} /> */}
+                                {/* <Route exact strict path="/vote" component={Vote} /> */}
+                                <Route exact strict path="/create" component={RedirectToAddLiquidity}/>
+                                <Route exact path="/add" component={AddLiquidity}/>
+                                <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure}/>
+                                <Route exact path="/add/:currencyIdA/:currencyIdB"
+                                       component={RedirectDuplicateTokenIds}/>
+                                <Route exact path="/create" component={AddLiquidity}/>
+                                <Route exact path="/create/:currencyIdA"
+                                       component={RedirectOldAddLiquidityPathStructure}/>
+                                <Route exact path="/create/:currencyIdA/:currencyIdB"
+                                       component={RedirectDuplicateTokenIds}/>
+                                <Route exact strict path="/remove/v1/:address" component={RemoveV1Exchange}/>
+                                <Route exact strict path="/remove/:tokens"
+                                       component={RedirectOldRemoveLiquidityPathStructure}/>
+                                <Route exact strict path="/remove/:currencyIdA/:currencyIdB"
+                                       component={RemoveLiquidity}/>
+                                {/* <Route exact strict path="/migrate/v1" component={MigrateV1} /> */}
+                                {/* <Route exact strict path="/migrate/v1/:address" component={MigrateV1Exchange} /> */}
+                                <Route exact strict path="/uni/:currencyIdA/:currencyIdB" component={Manage}/>
+                                <Route exact strict path="/home"
+                                       component={Home}/>
+                                {/* <Route exact strict path="/vote/:id" component={VotePage} /> */}
+                                <Route component={RedirectPathToSwapOnly}/>
+                            </Switch>
+                        </Web3ReactManager>
+                        {/*<Marginer/>*/}
+                    </ContentArea>
+                </BodyWrapper>
+            </AppWrapper>
+        </Suspense>
+    )
+}

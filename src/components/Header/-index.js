@@ -8,6 +8,7 @@ import {darken} from 'polished'
 import {useTranslation} from 'react-i18next'
 
 import styled from 'styled-components'
+import '../../assets/style/bootstrap.min.css'
 import '../../assets/style/custom.scss'
 import Logo from '../../assets/svg/logo.png'
 // import LogoDark from '../../assets/svg/logo_white.svg'
@@ -38,10 +39,15 @@ import UniBalanceContent from './UniBalanceContent'
 
 const HeaderFrame = styled.div`
   background-color:#191817;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 120px;
   align-items: center;
   justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
   width: 100%;
+  top: 0;
+  position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1rem;
   z-index: 2;
@@ -237,7 +243,7 @@ const StyledNavLink = styled(NavLink).attrs({
 
 const StyledExternalLink = styled(ExternalLink).attrs({
     activeClassName
-})<{ isActive?: boolean }>`
+})<{ isActive}>`
   ${({theme}) => theme.flexRowNoWrap}
   align-items: left;
   border-radius: 3rem;
@@ -295,7 +301,7 @@ export const StyledMenuButton = styled.button`
   }
 `
 
-const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
+const NETWORK_LABELS: {chainId in ChainId} = {
     [ChainId.RINKEBY]: 'Rinkeby',
     [ChainId.MATIC]: 'Matic',
     [ChainId.ROPSTEN]: 'Ropsten',
@@ -322,18 +328,22 @@ export default function Header() {
     const [showUniBalanceModal, setShowUniBalanceModal] = useState(false)
     const showClaimPopup = useShowClaimPopup()
 
+    const [show, setShow] = React.useState();
     // const countUpValue = aggregateBalance?.toFixed(0) ?? '0'
     // const countUpValuePrevious = usePrevious(countUpValue) ?? '0'
 
     return (
-        <HeaderFrame className="HeaderFrame flex-wrap">
+        <HeaderFrame className="HeaderFrame">
             <ClaimModal/>
             <Modal isOpen={showUniBalanceModal} onDismiss={() => setShowUniBalanceModal(false)}>
                 <UniBalanceContent setShowUniBalanceModal={setShowUniBalanceModal}/>
             </Modal>
             <HeaderRow className="HeaderRow">
+                <button onClick={() => setShow(!show)}>
+                    Toggle
+                </button>
                 <MenuButton className="sidebarCollapse btn shadow-none p-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16">
+                    <svg className={`${show ? "active" : ""}`} xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16">
                         <g transform="translate(-57 -38)">
                             <rect fill="#fa7005" width="20" height="2" transform="translate(57 38)"/>
                             <rect fill="#fa7005" width="10" height="2" transform="translate(57 45)"/>
