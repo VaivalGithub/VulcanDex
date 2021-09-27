@@ -25,9 +25,12 @@ import RemoveV1Exchange from './MigrateV1/RemoveV1Exchange'
 import Pool from './Pool'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
-import Home from './home'
-import {RedirectOldRemoveLiquidityPathStructure} from './RemoveLiquidity/redirects'
+import Home from './Home'
+import Farm from './Farm'
+import SyrupPools from './SyrupPools'
+import Collectibles from './Collectibles'
 import Swap from './Swap'
+import {RedirectOldRemoveLiquidityPathStructure} from './RemoveLiquidity/redirects'
 // import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import {RedirectPathToSwapOnly, RedirectToSwap} from './Swap/redirects'
 
@@ -49,6 +52,9 @@ const ContentArea = styled.div`
 const BodyWrapper = styled.div`
 
 `
+const MenuButton = styled.div`
+  
+`
 
 const Marginer = styled.div`
   margin-top: 5rem;
@@ -61,25 +67,34 @@ function TopLevelModals() {
 }
 
 export default function App() {
-    const [show, setShow] = React.useState();
+    /*const [show, setShow] = React.useState();*/
     return (
         <Suspense fallback={null}>
             <Route component={GoogleAnalyticsReporter}/>
             <Route component={DarkModeQueryParamReader}/>
             <AppWrapper>
                 <URLWarning/>
-                {/*<button onClick={() => setShow(!show)}>
-                    Toggle
-                </button>*/}
                 <HeaderWrapper className="Header">
                     <Header/>
                 </HeaderWrapper>
-                <BodyWrapper className="d-flex align-items-stretch">
-                    <SideBar id="SideBar" className={`d-flex flex-column p-4 ${show ? "active" : ""}`}>
-                        <ul className="list-unstyled mb-0">
+                <BodyWrapper id="MenuCustomDropDown" className="d-flex align-items-stretch">
+                    {/*<button onClick={() => setShow(!show)}>
+                        Toggle
+                    </button>*/}
+                    <MenuButton id="MenuBtn" role="button" data-bs-toggle="dropdown" aria-expanded="false" className="btn shadow-none p-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16">
+                            <g transform="translate(-57 -38)">
+                                <rect fill="#fa7005" width="20" height="2" transform="translate(57 38)"/>
+                                <rect fill="#fa7005" width="10" height="2" transform="translate(57 45)"/>
+                                <rect fill="#fa7005" width="20" height="2" transform="translate(57 52)"/>
+                            </g>
+                        </svg>
+                    </MenuButton>
+                    <div id="SideBar" aria-labelledby="MenuBtn" className={'dropdown-menu p-2 border-0 position-static d-flex flex-column'}>
+                        <ul className="list-unstyled mb-auto">
                             <li className="mb-4">
                                 <a className="active" href="#">
-                                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <g transform="translate(-10675 291)">
                                             <path fill="#fa7005" d="M19.483,8.709h0L11.314.54a1.843,1.843,0,0,0-2.607,0L.543,8.7l-.008.008a1.843,1.843,0,0,0,1.227,3.141l.057,0h.326v6.011A2.16,2.16,0,0,0,4.3,20.024H7.5a.587.587,0,0,0,.587-.587V14.724a.985.985,0,0,1,.984-.984h1.885a.985.985,0,0,1,.984.984v4.713a.587.587,0,0,0,.587.587h3.2a2.16,2.16,0,0,0,2.158-2.157V11.855h.3a1.844,1.844,0,0,0,1.3-3.146Zm0,0"
                                                   transform="translate(10676.742 -288.696)"/>
@@ -91,8 +106,8 @@ export default function App() {
                                 </a>
                             </li>
                             <li className="dropdown mb-4">
-                                <a className="dropdown-toggle d-flex align-items-center" href="#" id="TradeSubMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <a className="dropdown-toggle" href="#" id="TradeSubMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <g transform="translate(-10649 291)">
                                             <g transform="translate(10651.491 -288.696)">
                                                 <path fill="#fa7005"
@@ -113,7 +128,7 @@ export default function App() {
                                     </svg>
                                     <span>Trade</span>
                                 </a>
-                                <ul className="dropdown-menu bg-transparent position-static p-0" aria-labelledby="TradeSubMenu">
+                                <ul className="dropdown-menu dropdown-menu-dark p-2" aria-labelledby="TradeSubMenu">
                                     <li><a href="#">Action</a></li>
                                     <li><a href="#">Another action</a></li>
                                     <li><a href="#">Something else here</a></li>
@@ -121,7 +136,7 @@ export default function App() {
                             </li>
                             <li className="mb-4">
                                 <a href="#">
-                                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="24.023" height="24" viewBox="0 0 24.023 24">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24.023" height="24" viewBox="0 0 24.023 24">
                                         <g transform="translate(-10621 291)">
                                             <g transform="translate(10621.455 -288.696)">
                                                 <path fill="#fa7005"
@@ -154,7 +169,7 @@ export default function App() {
                             </li>
                             <li className="mb-4">
                                 <a href="#">
-                                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <g transform="translate(-10597 291)">
                                             <g transform="translate(10603.531 -288.696)">
                                                 <g transform="translate(0)">
@@ -178,7 +193,7 @@ export default function App() {
                             </li>
                             <li className="mb-4">
                                 <a href="#">
-                                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <g transform="translate(-10572 291)">
                                             <path fill="#fa7005"
                                                   d="M6.231,22.561a6.231,6.231,0,1,0,6.231,6.231A6.238,6.238,0,0,0,6.231,22.561Zm0,10.8a4.57,4.57,0,1,1,4.57-4.57A4.575,4.575,0,0,1,6.231,33.362Zm0-7.062a2.493,2.493,0,1,0,2.493,2.493A2.5,2.5,0,0,0,6.231,26.3Zm0,3.323a.831.831,0,1,1,.831-.831A.832.832,0,0,1,6.231,29.623Zm15.038-.831a6.235,6.235,0,0,1-8.292,5.882.831.831,0,1,1,.549-1.568,4.57,4.57,0,1,0-.07-8.6.831.831,0,1,1-.575-1.559,6.235,6.235,0,0,1,8.388,5.848ZM4.434,20.609a6.232,6.232,0,0,1,12.4-.048.831.831,0,0,1-1.652.177,4.57,4.57,0,0,0-9.091.035.831.831,0,0,1-.826.749q-.041,0-.083,0a.831.831,0,0,1-.745-.909Zm8.681.374a.831.831,0,0,1-.745.909c-.028,0-.056,0-.083,0a.831.831,0,0,1-.826-.749.831.831,0,0,0-1.651-.021.831.831,0,0,1-1.649-.206,2.493,2.493,0,0,1,4.954.062Zm2.511,8.4a.831.831,0,0,0-.9-1.358.831.831,0,0,1-.622-1.541,2.493,2.493,0,1,1,0,4.622.831.831,0,0,1,.622-1.541A.83.83,0,0,0,15.626,29.38Z"
@@ -192,7 +207,7 @@ export default function App() {
                             </li>
                             <li className="mb-4">
                                 <a href="#">
-                                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <g transform="translate(-10547 291)">
                                             <g transform="translate(10551.295 -288.696)">
                                                 <g transform="translate(3.425 0)">
@@ -211,7 +226,62 @@ export default function App() {
                                 </a>
                             </li>
                         </ul>
-                    </SideBar>
+                        <div className="dropdown ForCollapseView text-center">
+                            <a href="#" id="SettingOptions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#888888"
+                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                </svg>
+                            </a>
+                            <ul className="dropdown-menu dropdown-menu-dark p-2" aria-labelledby="SettingOptions">
+                                <li><a href="#">Dark Mode</a></li>
+                                <li><a href="#">Light Mode</a></li>
+                                <li><a href="#">English</a></li>
+                                <li><a href="#">Dutch</a></li>
+                            </ul>
+                        </div>
+                        <div className={'ForDesktopView justify-content-between align-items-start px-3'}>
+                            <div className={'d-flex align-items-center'}>
+                                <button type="button" className={'p-0 bg-transparent OrangeStrokeSvgOnHover border-0'}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#888888"
+                                         strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <circle cx="12" cy="12" r="5"></circle>
+                                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                                    </svg>
+                                </button>
+                                <span className={'px-1'}>/</span>
+                                <button type="button" className={'p-0 bg-transparent OrangeStrokeSvgOnHover active border-0'}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#888888"
+                                         strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div className="dropdown text-uppercase LanduageDropDown">
+                                <button className="p-0 border-0 bg-transparent text-white" type="button" id="ChooseLanguage" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg className={'me-2'} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FA7005"
+                                         strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                    </svg>
+                                    En
+                                </button>
+                                <ul className="dropdown-menu dropdown-menu-dark p-2" aria-labelledby="ChooseLanguage">
+                                    <li><a className="dropdown-item px-2" href="#">En</a></li>
+                                    <li><a className="dropdown-item px-2" href="#">Dutch</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <ContentArea id="ContentArea">
                         <Popups/>
                         <Polling/>
@@ -246,6 +316,12 @@ export default function App() {
                                 <Route exact strict path="/uni/:currencyIdA/:currencyIdB" component={Manage}/>
                                 <Route exact strict path="/home"
                                        component={Home}/>
+                                <Route exact strict path="/Farm"
+                                       component={Farm}/>
+                                <Route exact strict path="/SyrupPools"
+                                       component={SyrupPools}/>
+                                <Route exact strict path="/Collectibles"
+                                       component={Collectibles}/>
                                 {/* <Route exact strict path="/vote/:id" component={VotePage} /> */}
                                 <Route component={RedirectPathToSwapOnly}/>
                             </Switch>

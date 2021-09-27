@@ -38,23 +38,10 @@ import UniBalanceContent from './UniBalanceContent'
 
 const HeaderFrame = styled.div`
   background-color:#191817;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 7rem;
   z-index: 2;
-  ${({theme}) => theme.mediaWidth.upToMedium`
-    grid-template-columns: 1fr;
-    padding: 0 1rem;
-    width: calc(100%);
-    position: relative;
-  `};
-
-  ${({theme}) => theme.mediaWidth.upToExtraSmall`
-        padding: 0.5rem 1rem;
-  `}
 `
 
 const HeaderControls = styled.div`
@@ -63,7 +50,7 @@ const HeaderControls = styled.div`
   align-items: center;
   justify-self: flex-end;
 
-  ${({theme}) => theme.mediaWidth.upToMedium`
+  ${({theme}) => theme.mediaWidth.upToLarge`
     flex-direction: row;
     justify-content: space-between;
     justify-self: center;
@@ -109,10 +96,6 @@ const HeaderRow = styled(RowFixed)`
 
 const HeaderLinks = styled(Row)`
   justify-content: center;
-  ${({theme}) => theme.mediaWidth.upToMedium`
-    padding: 1rem 0 1rem 1rem;
-    justify-content: flex-end;
-`};
 `
 
 const AccountElement = styled.div<{ active: boolean }>`
@@ -182,27 +165,11 @@ const BalanceText = styled(Text)`
 `
 
 const Title = styled.a`
-  display: flex;
-  align-items: center;
-  pointer-events: auto;
-  justify-self: flex-start;
-  margin-right: 12px;
-  ${({theme}) => theme.mediaWidth.upToSmall`
-    justify-self: center;
-  `};
-  :hover {
-    cursor: pointer;
-  }
+  
 `
 
 const UniIcon = styled.div`
   transition: transform 0.3s ease;
-  :hover {
-  }
-`
-
-const MenuButton = styled.div`
-  margin-right: 3rem;
   :hover {
   }
 `
@@ -326,28 +293,19 @@ export default function Header() {
     // const countUpValuePrevious = usePrevious(countUpValue) ?? '0'
 
     return (
-        <HeaderFrame className="HeaderFrame flex-wrap">
+        <HeaderFrame className="HeaderFrame d-flex align-items-center justify-content-between flex-wrap">
             <ClaimModal/>
             <Modal isOpen={showUniBalanceModal} onDismiss={() => setShowUniBalanceModal(false)}>
                 <UniBalanceContent setShowUniBalanceModal={setShowUniBalanceModal}/>
             </Modal>
-            <HeaderRow className="HeaderRow">
-                <MenuButton className="sidebarCollapse btn shadow-none p-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16">
-                        <g transform="translate(-57 -38)">
-                            <rect fill="#fa7005" width="20" height="2" transform="translate(57 38)"/>
-                            <rect fill="#fa7005" width="10" height="2" transform="translate(57 45)"/>
-                            <rect fill="#fa7005" width="20" height="2" transform="translate(57 52)"/>
-                        </g>
-                    </svg>
-                </MenuButton>
+            <HeaderRow className="d-block d-md-flex HeaderRow text-center">
                 <Title href=".">
                     <UniIcon>
                         {/* <img width={'24px'} src={darkMode ? LogoDark : Logo} alt="logo" /> */}
                         <img width={'162px'} height="43px" src={Logo} alt="logo"/>
                     </UniIcon>
                 </Title>
-                <HeaderLinks className="MenuLinks">
+                <HeaderLinks className="MenuLinks flex-wrap ms-0 ms-sm-4 ms-md-5">
                     <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
                         {t('swap')}
                     </StyledNavLink>

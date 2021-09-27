@@ -7,7 +7,7 @@ import EarnImg from '../../assets/images/earn-img.png'
 const HomePage = () => {
     return (
         <div className="HomePage">
-            <div className="p-5 m-xl-5">
+            <div className="p-4 p-md-5 m-xl-5">
                 <h1 className="mb-3"><span className="OrangeColor">Play</span>, Swap, <span className="OrangeColor">Stake</span>, Earn</h1>
                 <h5 className="mb-5">The first decentralized exchange dedicated to gaming tokens only.</h5>
                 <button type="button" className="btn BtnOrange px-4 py-2 me-3">Connect Wallet</button>
@@ -27,7 +27,7 @@ const HomePage = () => {
                     <div className="row justify-content-center">
                         <div className="col-xxl-10">
                             <div className="row">
-                                <div className="col-md-4">
+                                <div className="col-md-4 mb-4 mb-md-0">
                                     <div className="StatusBox p-4">
                                         <div className="IconBox d-flex align-items-center justify-content-center mb-4">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="59.139" height="51.759" viewBox="0 0 59.139 51.759">
@@ -54,7 +54,7 @@ const HomePage = () => {
                                         <p>in the last 30 days</p>
                                     </div>
                                 </div>
-                                <div className="col-md-4">
+                                <div className="col-md-4 mb-4 mb-md-0">
                                     <div className="StatusBox p-4">
                                         <div className="IconBox d-flex align-items-center justify-content-center mb-4">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="43.001" height="51.601" viewBox="0 0 43.001 51.601">
@@ -84,7 +84,7 @@ const HomePage = () => {
                                         <p>made in the last 30 days</p>
                                     </div>
                                 </div>
-                                <div className="col-md-4">
+                                <div className="col-md-4 mb-4">
                                     <div className="StatusBox p-4">
                                         <div className="IconBox d-flex align-items-center justify-content-center mb-4">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="51.602" height="51.601" viewBox="0 0 51.602 51.601">
@@ -116,7 +116,7 @@ const HomePage = () => {
                             <button type="button" className="btn BtnOrange px-xl-4 py-2 me-3">Trade Now</button>
                             <button type="button" className="btn BtnBorderOrange px-xl-4">Learn More</button>
                         </div>
-                        <div className="col-lg-5 col-xl-4">
+                        <div className="col-sm-6 col-lg-4 col-xl-4 mx-auto mx-lg-0 d-none d-sm-block">
                             <img className="img-fluid" src={TradeImg} alt="Trade Image"/>
                         </div>
                     </div>
@@ -125,10 +125,10 @@ const HomePage = () => {
             <div className="EarnBox py-5 px-3">
                 <div className="container">
                     <div className="row justify-content-between align-items-center">
-                        <div className="col-lg-4 col-xl-4">
+                        <div className="col-sm-6 col-lg-4 col-xl-4 mx-auto mx-lg-0 order-lg-1 order-2 d-none d-sm-block">
                             <img className="img-fluid" src={EarnImg} alt="Trade Image"/>
                         </div>
-                        <div className="col-lg-8 col-xl-7">
+                        <div className="col-lg-8 col-xl-7 order-lg-2 order-1">
                             <h1 className="mb-4"><span className="OrangeColor">Earn</span> passive income with <span className="OrangeColor">crypto</span>.</h1>
                             <p className="mb-5">VulcanDex makes it easy to make your crypto work for you.</p>
 
@@ -185,7 +185,7 @@ const HomePage = () => {
                 </div>
             </div>
             <div className="container px-3 mb-5">
-                <div className="PrizeBox p-5">
+                <div className="PrizeBox p-4 p-md-5">
                     <div className="text-center mb-5">
                         <h1 className="mb-4">Win <span className="OrangeColor">millions</span> in prizes</h1>
                         <p>Provably fair, on-chain games. Win big with PancakeSwap.</p>
@@ -193,7 +193,7 @@ const HomePage = () => {
                     <div className="row justify-content-center">
                         <div className="col-xxl-9">
                             <div className="row">
-                                <div className="col-md-6">
+                                <div className="col-md-6 mb-4 mb-md-0">
                                     <div className="Prizes p-4">
                                         <div className="row mb-4">
                                             <div className="col">
@@ -295,7 +295,7 @@ const HomePage = () => {
 
                             <button type="button" className="btn BtnOrange px-4 py-2 me-3">Buy PYR</button>
                             <button type="button" className="btn BtnBorderOrange">Learn More</button>
-                            <div className="row pt-5">
+                            <div className="row pt-5 mb-5">
                                 <div className="col-md">
                                     <div className="BorderRight">
                                         <h6 className="mb-2">Total Supply</h6>
@@ -326,18 +326,18 @@ const HomePage = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 col-xl-4">
+                        <div className="col-sm-6 col-lg-4 col-xl-4 mx-auto mx-lg-0 d-none d-sm-block">
                             <img className="img-fluid" src={TradeImg} alt="Trade Image"/>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="HowToStart text-center py-5 ">
+            <div className="HowToStart text-center p-4 py-sm-5 mb-5 mb-xl-0">
                 <div className="WidthBox mx-auto">
                     <h1 className="mb-4">Start in <span className="OrangeColor">seconds</span>.</h1>
                     <p className="mb-4">Connect your crypto wallet to start using the app in seconds. No registration needed.</p>
-                    <button type="button" className="btn BtnOrange px-4 py-2 me-3">Connect Wallet</button>
-                    <button type="button" className="btn BtnBorderOrange px-4 py-2">Learn how to start</button>
+                    <button type="button" className="btn BtnOrange px-4 py-2 me-3 mt-2 mt-sm-0">Connect Wallet</button>
+                    <button type="button" className="btn BtnBorderOrange px-4 py-2 mt-2 mt-sm-0">Learn how to start</button>
                 </div>
             </div>
         </div>
