@@ -1,5 +1,5 @@
 import React, {Suspense} from 'react'
-import {Route, Switch} from 'react-router-dom'
+import {NavLink, Route, Switch} from 'react-router-dom'
 import styled from 'styled-components'
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
 import AddressClaimModal from '../components/claim/AddressClaimModal'
@@ -27,18 +27,23 @@ import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import Home from './Home'
 import Farm from './Farm'
+import Staking from './Staking'
 import SyrupPools from './SyrupPools'
 import Collectibles from './Collectibles'
 import Swap from './Swap'
 import {RedirectOldRemoveLiquidityPathStructure} from './RemoveLiquidity/redirects'
 // import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import {RedirectPathToSwapOnly, RedirectToSwap} from './Swap/redirects'
+import StakingPage from "./Staking";
+import {darken} from "polished";
 
 // import Vote from './Vote'
 // import VotePage from './Vote/VotePage'
 
 const AppWrapper = styled.div`
 `
+
+const StyledNavLink = styled(NavLink).attrs({})``
 
 const HeaderWrapper = styled.div`
   ${({theme}) => theme.flexRowNoWrap}
@@ -67,7 +72,6 @@ function TopLevelModals() {
 }
 
 export default function App() {
-    /*const [show, setShow] = React.useState();*/
     return (
         <Suspense fallback={null}>
             <Route component={GoogleAnalyticsReporter}/>
@@ -78,9 +82,6 @@ export default function App() {
                     <Header/>
                 </HeaderWrapper>
                 <BodyWrapper id="MenuCustomDropDown" className="d-flex align-items-stretch">
-                    {/*<button onClick={() => setShow(!show)}>
-                        Toggle
-                    </button>*/}
                     <MenuButton id="MenuBtn" role="button" data-bs-toggle="dropdown" aria-expanded="false" className="btn shadow-none p-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16">
                             <g transform="translate(-57 -38)">
@@ -93,7 +94,7 @@ export default function App() {
                     <div id="SideBar" aria-labelledby="MenuBtn" className={'dropdown-menu p-2 border-0 position-static d-flex flex-column'}>
                         <ul className="list-unstyled mb-auto">
                             <li className="mb-4">
-                                <a className="active" href="#">
+                                <a href="#">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <g transform="translate(-10675 291)">
                                             <path fill="#fa7005" d="M19.483,8.709h0L11.314.54a1.843,1.843,0,0,0-2.607,0L.543,8.7l-.008.008a1.843,1.843,0,0,0,1.227,3.141l.057,0h.326v6.011A2.16,2.16,0,0,0,4.3,20.024H7.5a.587.587,0,0,0,.587-.587V14.724a.985.985,0,0,1,.984-.984h1.885a.985.985,0,0,1,.984.984v4.713a.587.587,0,0,0,.587.587h3.2a2.16,2.16,0,0,0,2.158-2.157V11.855h.3a1.844,1.844,0,0,0,1.3-3.146Zm0,0"
@@ -168,7 +169,7 @@ export default function App() {
                                 </a>
                             </li>
                             <li className="mb-4">
-                                <a href="#">
+                                <StyledNavLink id={`Staking`} to={'/Staking'}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <g transform="translate(-10597 291)">
                                             <g transform="translate(10603.531 -288.696)">
@@ -188,10 +189,10 @@ export default function App() {
                                                   transform="translate(10597 -291)"/>
                                         </g>
                                     </svg>
-                                    <span>Pools</span>
-                                </a>
+                                    <span>Staking</span>
+                                </StyledNavLink>
                             </li>
-                            <li className="mb-4">
+                            {/*<li className="mb-4">
                                 <a href="#">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <g transform="translate(-10572 291)">
@@ -224,7 +225,7 @@ export default function App() {
                                     </svg>
                                     <span>Profile</span>
                                 </a>
-                            </li>
+                            </li>*/}
                         </ul>
                         <div className="dropdown ForCollapseView text-center">
                             <a href="#" id="SettingOptions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -318,6 +319,8 @@ export default function App() {
                                        component={Home}/>
                                 <Route exact strict path="/Farm"
                                        component={Farm}/>
+                                <Route exact strict path="/Staking"
+                                       component={StakingPage}/>
                                 <Route exact strict path="/SyrupPools"
                                        component={SyrupPools}/>
                                 <Route exact strict path="/Collectibles"
