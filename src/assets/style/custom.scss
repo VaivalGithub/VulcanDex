@@ -183,6 +183,9 @@ a {
         background-color: #CE5A00;
         color: #fff;
     }
+    &.minHeightNone {
+        min-height: inherit;
+    }
 }
 .BtnGrey {
     border-top: solid 1px transparent;

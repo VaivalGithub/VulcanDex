@@ -322,7 +322,13 @@ export default function Header() {
                     >
                         {t('pool')}
                     </StyledNavLink>
-                    <StyledNavLink id={`Rewards-nav-link`} to={'/Rewards'}>
+                    <a className="btn BtnOrange shadow-none rounded py-1 px-3 me-2 minHeightNone" target="_blank" href="https://market.vulcanforged.com/">
+                        Marketplace
+                    </a>
+                    <a className="btn BtnOrange shadow-none rounded py-1 px-3 minHeightNone" target="_blank" href="https://myforge.vulcanforged.com/">
+                        My Forge
+                    </a>
+                    {/*<StyledNavLink id={`Rewards-nav-link`} to={'/Rewards'}>
                         {t('Rewards')}
                     </StyledNavLink>
                     <StyledNavLink id={`Charts-nav-link`} to={'/Charts'}>
@@ -330,7 +336,7 @@ export default function Header() {
                     </StyledNavLink>
                     <StyledNavLink id={`IDO-nav-link`} to={'/IDO'}>
                         IDO <span style={{fontSize: '8px',marginLeft: '3px'}}>↗</span>
-                    </StyledNavLink>
+                    </StyledNavLink>*/}
                     {/* <StyledNavLink id={`stake-nav-link`} to={'/uni'}>
             UNI
           </StyledNavLink> */}

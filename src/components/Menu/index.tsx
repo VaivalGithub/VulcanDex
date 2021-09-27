@@ -114,7 +114,7 @@ export default function Menu() {
                         <BookOpen size={14}/>
                         Docs
                     </MenuItem>
-                    <MenuItem id="link" href="https://discord.gg/link">
+                    <MenuItem id="link" href="https://discord.gg/vulcanverse">
                         <MessageCircle size={14}/>
                         Discord
                     </MenuItem>
