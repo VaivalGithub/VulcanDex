@@ -81,8 +81,8 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
 
 const Container = styled.div<{ hideInput: boolean }>`
   border-radius: ${({ hideInput }) => (hideInput ? '8px' : '10px')};
-  border: 1px solid ${({ theme }) => theme.bg2};
-  background-color: ${({ theme }) => theme.bg1};
+  border: 1px solid #282b30;
+  background-color: #282b30;
 `
 
 const StyledTokenName = styled.span<{ active?: boolean }>`
