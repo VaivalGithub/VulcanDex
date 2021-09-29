@@ -128,7 +128,7 @@ export default function Pool() {
         <>
             <div className="container-fluid h-100">
                 <div className="row justify-content-center align-items-center h-100">
-                    <div className="col-11 col-sm-9 col-md-8 col-lg-7 col-xl-6 col-xxl-4">
+                    <div className="col-11 col-sm-9 col-md-8 col-lg-7 col-xl-6 col-xxl-4 my-4">
                         <PageWrapper className="pb-5 mb-3">
                             <SwapPoolTabs active={'pool'}/>
                             <VoteCard>

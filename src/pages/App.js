@@ -301,6 +301,8 @@ export default function App() {
                         <TopLevelModals/>
                         <Web3ReactManager>
                             <Switch>
+                                <Route exact strict path="/" component={Home} />
+                                <Route exact strict path="/home" component={Home}/>
                                 <Route exact strict path="/swap" component={Swap}/>
                                 {/* <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} /> */}
                                 <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap}/>
@@ -327,8 +329,6 @@ export default function App() {
                                 {/* <Route exact strict path="/migrate/v1" component={MigrateV1} /> */}
                                 {/* <Route exact strict path="/migrate/v1/:address" component={MigrateV1Exchange} /> */}
                                 <Route exact strict path="/uni/:currencyIdA/:currencyIdB" component={Manage}/>
-                                <Route exact strict path="/home"
-                                       component={Home}/>
                                 <Route exact strict path="/Farm"
                                        component={Farm}/>
                                 <Route exact strict path="/Staking"
