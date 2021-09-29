@@ -1,20 +1,24 @@
 import React from "react";
 import ArtWorkImg from '../../assets/images/artwork-img.png'
-import FireLogoImg from '../../assets/images/fire_logo.png'
+//import FireLogoImg from '../../assets/images/fire_logo.png'
 import TradeImg from '../../assets/images/trade-img.png'
 import EarnImg from '../../assets/images/earn-img.png'
+import {useWalletModalToggle} from "../../state/application/hooks";
 
 const HomePage = () => {
+
+    const toggleWalletModal = useWalletModalToggle()
     return (
         <div className="HomePage">
             <div className="p-4 p-md-5 m-xl-5">
                 <h1 className="mb-3"><span className="OrangeColor">Play</span>, Swap, <span className="OrangeColor">Stake</span>, Earn</h1>
                 <h5 className="mb-5">The first decentralized exchange dedicated to gaming tokens only.</h5>
-                <button type="button" className="btn BtnOrange px-4 py-2 me-3">Connect Wallet</button>
-                <button type="button" className="btn BtnBorderOrange">Trade Now</button>
+                <button onClick={toggleWalletModal} type="button" className="btn BtnOrange px-4 py-2 shadow-none me-3">Connect Wallet</button>
+                {/*<button type="button" className="btn BtnBorderOrange">Trade Now</button>*/}
+                <a className="btn BtnBorderOrange shadow-none px-4 py-2" href="/#/swap?outputCurrency=0x348e62131fce2F4e0d5ead3Fe1719Bc039B380A9">Trade Now</a>
             </div>
-            <p className="text-end mb-5"><img className="img-fluid" src={ArtWorkImg} alt="logo"/></p>
-            <div className="StatisticsBox mb-5">
+            <p className="text-end mb-0"><img className="img-fluid" src={ArtWorkImg} alt="logo"/></p>
+            {/*<div className="StatisticsBox mb-5">
                 <div className="container">
                     <div className="text-center WidthBox mx-auto">
                         <div className="BgLogoFire d-flex align-items-center justify-content-center rounded-circle mx-auto mb-4">
@@ -105,16 +109,17 @@ const HomePage = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*/}
             <div className="TradeBox py-5 px-3">
                 <div className="container">
                     <div className="row justify-content-between align-items-center">
                         <div className="col-lg-8 col-xl-7">
-                            <h1 className="mb-4">Trade <span className="OrangeColor">anything. No</span> registration, no  <span className="OrangeColor">hassle</span>.</h1>
-                            <p className="mb-5">Trade any token on Vulcan Smart Chain in seconds, just by connecting your wallet.</p>
+                            <h1 className="mb-4">Trade <span className="OrangeColor">gaming tokens. No</span> registration, no  <span className="OrangeColor">hassle</span>.</h1>
+                            <p className="mb-5">Trade any token on VulcanDex in seconds, just by connecting your wallet.</p>
 
-                            <button type="button" className="btn BtnOrange px-xl-4 py-2 me-3">Trade Now</button>
-                            <button type="button" className="btn BtnBorderOrange px-xl-4">Learn More</button>
+                            {/*<button type="button" className="btn BtnOrange px-xl-4 py-2 me-3">Trade Now</button>*/}
+                            <a className="btn BtnOrange px-xl-4 py-2 me-3 shadow-none" href="/#/swap?outputCurrency=0x348e62131fce2F4e0d5ead3Fe1719Bc039B380A9">Trade Now</a>
+                            {/*<button type="button" className="btn BtnBorderOrange px-xl-4">Learn More</button>*/}
                         </div>
                         <div className="col-sm-6 col-lg-4 col-xl-4 mx-auto mx-lg-0 d-none d-sm-block">
                             <img className="img-fluid" src={TradeImg} alt="Trade Image"/>
@@ -129,16 +134,17 @@ const HomePage = () => {
                             <img className="img-fluid" src={EarnImg} alt="Trade Image"/>
                         </div>
                         <div className="col-lg-8 col-xl-7 order-lg-2 order-1">
-                            <h1 className="mb-4"><span className="OrangeColor">Earn</span> passive income with <span className="OrangeColor">crypto</span>.</h1>
+                            <h1 className="mb-4"><span className="OrangeColor">Earn</span> NFTs with your <span className="OrangeColor">LP tokens</span>.</h1>
                             <p className="mb-5">VulcanDex makes it easy to make your crypto work for you.</p>
 
-                            <button type="button" className="btn BtnOrange px-4 py-2 me-3">Explore</button>
-                            <button type="button" className="btn BtnBorderOrange">Learn More</button>
+                            <a className="btn BtnOrange px-4 py-2 me-3 shadow-none" href="/#/Farm">Explore</a>
+                            {/*<button type="button" className="btn BtnOrange px-4 py-2 me-3">Explore</button>*/}
+                            {/*<button type="button" className="btn BtnBorderOrange">Learn More</button>*/}
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="SyrupPool px-3 mb-5">
+            {/*<div className="SyrupPool px-3 mb-5">
                 <div className="container">
                     <h4 className="text-white mb-5">Top <span className="OrangeColor">Syrup Pools</span>
                         <svg className="ms-3" xmlns="http://www.w3.org/2000/svg" width="20.096" height="22.967" viewBox="0 0 20.096 22.967">
@@ -183,8 +189,8 @@ const HomePage = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="container px-3 mb-5">
+            </div>*/}
+            {/*<div className="container px-3 mb-5">
                 <div className="PrizeBox p-4 p-md-5">
                     <div className="text-center mb-5">
                         <h1 className="mb-4">Win <span className="OrangeColor">millions</span> in prizes</h1>
@@ -285,27 +291,28 @@ const HomePage = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*/}
             <div className="BuyPyr py-5 px-3">
                 <div className="container">
                     <div className="row justify-content-between align-items-center">
                         <div className="col-lg-8 col-xl-7">
                             <h1 className="mb-4"><span className="OrangeColor">PYR</span> makes our world go <span className="OrangeColor">round</span>.</h1>
-                            <p className="mb-5">CAKE token is at the heart of the PancakeSwap ecosystem. Buy it, win it, farm it, spend it, stake it… heck, you can even vote with it!</p>
+                            <p className="mb-5">PYR is at the heart of the VulcanDex ecosystem. Buy it, win it, farm it, spend it, stake it…</p>
 
-                            <button type="button" className="btn BtnOrange px-4 py-2 me-3">Buy PYR</button>
-                            <button type="button" className="btn BtnBorderOrange">Learn More</button>
+                            {/*<button type="button" className="btn BtnOrange px-4 py-2 me-3 shadow-none">Buy PYR</button>*/}
+                            <a className="btn BtnOrange px-4 py-2 me-3 shadow-none" target="_blank" href="https://myforge.vulcanforged.com/BuyViaFiat/Index">Buy PYR</a>
+                            <a className="btn BtnOrange px-4 py-2 me-3 shadow-none" href="/#/swap?outputCurrency=0x348e62131fce2F4e0d5ead3Fe1719Bc039B380A9">Trade PYR </a>
                             <div className="row pt-5 mb-5">
                                 <div className="col-md">
                                     <div className="BorderRight">
-                                        <h6 className="mb-2">Total Supply</h6>
+                                        <h6 className="mb-2">Current Price</h6>
                                         <p className="mb-2 text-white">93.87%</p>
                                         <small>APR</small>
                                     </div>
                                 </div>
                                 <div className="col-md">
                                     <div className="BorderRight">
-                                        <h6 className="mb-2">Burned to Date</h6>
+                                        <h6 className="mb-2">Supply</h6>
                                         <p className="mb-2 text-white">93.87%</p>
                                         <small>APR</small>
                                     </div>
@@ -319,7 +326,7 @@ const HomePage = () => {
                                 </div>
                                 <div className="col-md">
                                     <div className="BorderRight border-end-0">
-                                        <h6 className="mb-2">Current Emissions</h6>
+                                        <h6 className="mb-2">Market Cap Rank</h6>
                                         <p className="mb-2 text-white">19/block</p>
                                         <small>APR</small>
                                     </div>
@@ -336,8 +343,8 @@ const HomePage = () => {
                 <div className="WidthBox mx-auto">
                     <h1 className="mb-4">Start in <span className="OrangeColor">seconds</span>.</h1>
                     <p className="mb-4">Connect your crypto wallet to start using the app in seconds. No registration needed.</p>
-                    <button type="button" className="btn BtnOrange px-4 py-2 me-3 mt-2 mt-sm-0">Connect Wallet</button>
-                    <button type="button" className="btn BtnBorderOrange px-4 py-2 mt-2 mt-sm-0">Learn how to start</button>
+                    {/*<button onClick={toggleWalletModal} type="button" className="btn BtnOrange px-4 py-2 me-3 mt-2 mt-sm-0 shadow-none">Connect Wallet</button>
+                    <button type="button" className="btn BtnBorderOrange px-4 py-2 mt-2 mt-sm-0 shadow-none">Learn how to start</button>*/}
                 </div>
             </div>
         </div>

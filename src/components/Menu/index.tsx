@@ -1,6 +1,6 @@
 import React, {useRef} from 'react'
 // import { BookOpen, Code, Info, MessageCircle, PieChart } from 'react-feather'
-import {BookOpen, Info, MessageCircle} from 'react-feather'
+import {BookOpen, /*Info,*/ MessageCircle} from 'react-feather'
 
 import styled from 'styled-components'
 import {ReactComponent as MenuIcon} from '../../assets/images/menu.svg'
@@ -106,10 +106,10 @@ export default function Menu() {
             </StyledMenuButton>
             {open && (
                 <MenuFlyout>
-                    <MenuItem id="link" href="https://google.com/">
+                    {/*<MenuItem id="link" href="https://google.com/">
                         <Info size={14}/>
                         About
-                    </MenuItem>
+                    </MenuItem>*/}
                     <MenuItem id="link" href="https://google.com">
                         <BookOpen size={14}/>
                         Docs

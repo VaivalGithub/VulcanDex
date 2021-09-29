@@ -26,7 +26,7 @@ import Pool from './Pool'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import Home from './Home'
-import Farm from './Farm'
+import Farm from './Farm/comingsoon'
 import Staking from './Staking'
 import SyrupPools from './SyrupPools'
 import Collectibles from './Collectibles'
@@ -94,7 +94,7 @@ export default function App() {
                     <div id="SideBar" aria-labelledby="MenuBtn" className={'dropdown-menu p-2 border-0 position-static d-flex flex-column'}>
                         <ul className="list-unstyled mb-auto">
                             <li className="mb-4">
-                                <a href="#">
+                                <StyledNavLink id={`Home`} to={'/Home'}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <g transform="translate(-10675 291)">
                                             <path fill="#fa7005" d="M19.483,8.709h0L11.314.54a1.843,1.843,0,0,0-2.607,0L.543,8.7l-.008.008a1.843,1.843,0,0,0,1.227,3.141l.057,0h.326v6.011A2.16,2.16,0,0,0,4.3,20.024H7.5a.587.587,0,0,0,.587-.587V14.724a.985.985,0,0,1,.984-.984h1.885a.985.985,0,0,1,.984.984v4.713a.587.587,0,0,0,.587.587h3.2a2.16,2.16,0,0,0,2.158-2.157V11.855h.3a1.844,1.844,0,0,0,1.3-3.146Zm0,0"
@@ -104,7 +104,7 @@ export default function App() {
                                         </g>
                                     </svg>
                                     <span>Home</span>
-                                </a>
+                                </StyledNavLink>
                             </li>
                             <li className="dropdown mb-4">
                                 <a className="dropdown-toggle" href="#" id="TradeSubMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -130,13 +130,25 @@ export default function App() {
                                     <span>Trade</span>
                                 </a>
                                 <ul className="dropdown-menu dropdown-menu-dark p-2" aria-labelledby="TradeSubMenu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
+                                    <li>
+                                        <StyledNavLink id={`manage-pool-nav-link`} to={'/swap?outputCurrency=0x348e62131fce2F4e0d5ead3Fe1719Bc039B380A9'}>
+                                            {('Swap')}
+                                        </StyledNavLink>
+                                    </li>
+                                    <li>
+                                        <StyledNavLink id={`pool-nav-link`} to={'/pool'}>
+                                            {('Manage Pools')}
+                                        </StyledNavLink>
+                                    </li>
+                                    <li>
+                                        <StyledNavLink id={`Add-Liquidity-nav-link`} to={'/add/0x348e62131fce2F4e0d5ead3Fe1719Bc039B380A9'}>
+                                            {('Add Liquidity')}
+                                        </StyledNavLink>
+                                    </li>
                                 </ul>
                             </li>
                             <li className="mb-4">
-                                <a href="#">
+                                <StyledNavLink id={`Farm`} to={'/Farm'}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24.023" height="24" viewBox="0 0 24.023 24">
                                         <g transform="translate(-10621 291)">
                                             <g transform="translate(10621.455 -288.696)">
@@ -166,7 +178,7 @@ export default function App() {
                                         </g>
                                     </svg>
                                     <span>Farms</span>
-                                </a>
+                                </StyledNavLink>
                             </li>
                             <li className="mb-4">
                                 <StyledNavLink id={`Staking`} to={'/Staking'}>
@@ -289,6 +301,8 @@ export default function App() {
                         <TopLevelModals/>
                         <Web3ReactManager>
                             <Switch>
+                                <Route exact strict path="/" component={Home} />
+                                <Route exact strict path="/home" component={Home}/>
                                 <Route exact strict path="/swap" component={Swap}/>
                                 {/* <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} /> */}
                                 <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap}/>
@@ -315,8 +329,6 @@ export default function App() {
                                 {/* <Route exact strict path="/migrate/v1" component={MigrateV1} /> */}
                                 {/* <Route exact strict path="/migrate/v1/:address" component={MigrateV1Exchange} /> */}
                                 <Route exact strict path="/uni/:currencyIdA/:currencyIdB" component={Manage}/>
-                                <Route exact strict path="/home"
-                                       component={Home}/>
                                 <Route exact strict path="/Farm"
                                        component={Farm}/>
                                 <Route exact strict path="/Staking"

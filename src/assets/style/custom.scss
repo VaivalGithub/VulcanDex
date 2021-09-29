@@ -12,7 +12,7 @@ h1 {
     font-family: 'Kanit', sans-serif;
     line-height: 1;
     font-weight: 600;
-    font-size: 72px;
+    font-size: 66px;
     color: #fff;
 }
 h3 {
@@ -178,7 +178,7 @@ a {
     font-weight: 700;
     font-size: 16px;
     color: #fff;
-    min-height: 48px;
+    min-height: 42px;
     &:hover {
         background-color: #CE5A00;
         color: #fff;
@@ -197,7 +197,7 @@ a {
     font-weight: 700;
     font-size: 16px;
     color: #fff;
-    min-height: 48px;
+    min-height: 42px;
     &:hover {
         background-color: transparent;
         border-top: solid 1px #888888;
@@ -213,7 +213,7 @@ a {
     font-weight: 700;
     font-size: 16px;
     color: #FA7005;
-    min-height: 48px;
+    min-height: 42px;
     box-shadow: 0px 2px #CE5A00;
     &:hover {
         background-color: #CE5A00;
@@ -300,24 +300,28 @@ a {
             color: #fff;
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
             svg {
                 width: 24px;
                 margin-right: 0;
-                margin-left: 8px;
+                margin-left: 0px;
                 -webkit-transition: all 0.3s;
                 -moz-transition: all 0.3s;
                 -ms-transition: all 0.3s;
                 -o-transition: all 0.3s;
                 transition: all 0.3s;
+                margin-bottom: 5px;
             }
             span {
-                opacity: 0;
+                /*opacity: 0;*/
                 -webkit-transition: all 0.3s;
                 -moz-transition: all 0.3s;
                 -ms-transition: all 0.3s;
                 -o-transition: all 0.3s;
                 transition: all 0.3s;
-                width: 0;
+                /*width: 0;*/
+                font-size: 12px;
             }
             &:hover,
             &.active {
@@ -331,6 +335,9 @@ a {
                 margin-left: auto;
                 margin-right: 5px;
                 color: #EB7527;
+                position: absolute;
+                right: -10px;
+                bottom: 3px;
             }
         }
         #TradeSubMenu {
@@ -350,6 +357,7 @@ a {
             li {
                 padding: 4px 0;
                 a {
+                    justify-content: start;
                     padding-left: 0px;
                     font-size: 14px;
                     font-weight: 400;
@@ -378,13 +386,17 @@ a {
         width: 230px;
         li {
             a {
+                justify-content: start;
                 svg {
                     margin-right: 0.5rem;
+                    margin-left: 8px;
+                    margin-bottom: 0px;
                 }
             }
             &.dropdown {
                 #TradeSubMenu {
                     &:after {
+                        position: static;
                         transform: none;
                     }
                     &.show {
@@ -408,6 +420,7 @@ a {
             a {
                 span {
                     opacity: 1;
+                    font-size: 16px;
                     /*width: 85px;*/
                 }
             }
@@ -614,4 +627,9 @@ a {
         }
     }
 }
-@media only screen and (max-width: 479px) {}
+@media only screen and (max-width: 479px) {
+    .HeaderFrame {
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
+}
