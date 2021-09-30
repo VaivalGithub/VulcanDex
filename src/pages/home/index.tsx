@@ -12,7 +12,7 @@ const HomePage = () => {
 
 
     let [marketCap,setmarketCap] = React.useState('');
-    let [totalsupply,setTotalSupplyData] = React.useState('');
+    let [circulatingSupply,setCirculatingSupplyData] = React.useState('');
     let [currentPrice,setcurrentPrice] = React.useState('');
     let [marketCapRank,setMarketCapRank] = React.useState('');
 
@@ -23,7 +23,8 @@ const HomePage = () => {
         "url": "https://api.coingecko.com/api/v3/coins/vulcan-forged?tickers=true&market_data=true"
       })
       .then((response) => {
-        setTotalSupplyData(response.data.market_data.total_supply)
+          console.log(response.data.market_data)
+        setCirculatingSupplyData(response.data.market_data.circulating_supply)
         setmarketCap(response.data.market_data.market_cap.usd)
         setcurrentPrice(response.data.market_data.current_price.usd)
         setMarketCapRank(response.data.market_data.market_cap_rank)
@@ -345,28 +346,24 @@ const HomePage = () => {
                                     <div className="BorderRight">
                                         <h6 className="mb-2">Current Price</h6>
                                         <p className="mb-2 text-white">${currentPrice?currentPrice:null}</p>
-                                        <small>APR</small>
                                     </div>
                                 </div>
                                 <div className="col-md">
                                     <div className="BorderRight">
-                                        <h6 className="mb-2">Supply</h6>
-                                        <p className="mb-2 text-white">{totalsupply?totalsupply:null}</p>
-                                        <small>APR</small>
+                                        <h6 className="mb-2">Circulating Supply</h6>
+                                        <p className="mb-2 text-white">{circulatingSupply?circulatingSupply.toLocaleString():null}</p>
                                     </div>
                                 </div>
                                 <div className="col-md">
                                     <div className="BorderRight">
                                         <h6 className="mb-2">Market Cap</h6>
-                                        <p className="mb-2 text-white">$ {marketCap?marketCap:null}</p>
-                                        <small>APR</small>
+                                        <p className="mb-2 text-white">$ {marketCap?marketCap.toLocaleString():null}</p>
                                     </div>
                                 </div>
                                 <div className="col-md">
                                     <div className="BorderRight border-end-0">
                                         <h6 className="mb-2">Market Cap Rank</h6>
                                         <p className="mb-2 text-white">{marketCapRank?marketCapRank:null}</p>
-                                        <small>APR</small>
                                     </div>
                                 </div>
                             </div>
