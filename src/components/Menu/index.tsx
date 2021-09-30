@@ -110,7 +110,7 @@ export default function Menu() {
                         <Info size={14}/>
                         About
                     </MenuItem>*/}
-                    <MenuItem id="link" href="https://google.com">
+                    <MenuItem id="link" href="https://github.com/VaivalGithub/VulcanDex">
                         <BookOpen size={14}/>
                         Docs
                     </MenuItem>
