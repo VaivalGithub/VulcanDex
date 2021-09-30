@@ -350,7 +350,7 @@ export default function Header() {
             </HeaderRow>
             <HeaderControls className="HeaderControls">
                 <HeaderLinks className="MenuLinks Second">
-                    <StyledExternalLink id={`stake-nav-link`} href={'https://wallet.matic.network/'}>
+                    <StyledExternalLink id={`stake-nav-link`} href={'https://wallet.polygon.technology/login?next=%2Fbridge'}>
                         Bridge Assets <span style={{fontSize: '8px',marginLeft: '3px'}}>↗</span>
                     </StyledExternalLink>
                 </HeaderLinks>
