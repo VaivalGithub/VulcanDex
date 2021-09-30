@@ -4,10 +4,48 @@ import ArtWorkImg from '../../assets/images/artwork-img.png'
 import TradeImg from '../../assets/images/trade-img.png'
 import EarnImg from '../../assets/images/earn-img.png'
 import {useWalletModalToggle} from "../../state/application/hooks";
-
+import axios from "axios";
 const HomePage = () => {
 
     const toggleWalletModal = useWalletModalToggle()
+
+
+
+    let [marketCap,setmarketCap] = React.useState('');
+    let [totalsupply,setTotalSupplyData] = React.useState('');
+    let [currentPrice,setcurrentPrice] = React.useState('');
+    let [marketCapRank,setMarketCapRank] = React.useState('');
+
+    
+    const fetchData = React.useCallback(() => {
+      axios({
+        "method": "GET",
+        "url": "https://api.coingecko.com/api/v3/coins/vulcan-forged?tickers=true&market_data=true"
+      })
+      .then((response) => {
+        setTotalSupplyData(response.data.market_data.total_supply)
+        setmarketCap(response.data.market_data.market_cap.usd)
+        setcurrentPrice(response.data.market_data.current_price.usd)
+        setMarketCapRank(response.data.market_data.market_cap_rank)
+
+        
+
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    }, [])
+    
+    React.useEffect(() => {
+      fetchData()
+    }, [fetchData])
+
+
+
+
+
+
+
     return (
         <div className="HomePage">
             <div className="p-4 p-md-5 m-xl-5">
@@ -306,28 +344,28 @@ const HomePage = () => {
                                 <div className="col-md">
                                     <div className="BorderRight">
                                         <h6 className="mb-2">Current Price</h6>
-                                        <p className="mb-2 text-white">93.87%</p>
+                                        <p className="mb-2 text-white">${currentPrice?currentPrice:null}</p>
                                         <small>APR</small>
                                     </div>
                                 </div>
                                 <div className="col-md">
                                     <div className="BorderRight">
                                         <h6 className="mb-2">Supply</h6>
-                                        <p className="mb-2 text-white">93.87%</p>
+                                        <p className="mb-2 text-white">{totalsupply?totalsupply:null}</p>
                                         <small>APR</small>
                                     </div>
                                 </div>
                                 <div className="col-md">
                                     <div className="BorderRight">
                                         <h6 className="mb-2">Market Cap</h6>
-                                        <p className="mb-2 text-white">$3.8 billion</p>
+                                        <p className="mb-2 text-white">$ {marketCap?marketCap:null}</p>
                                         <small>APR</small>
                                     </div>
                                 </div>
                                 <div className="col-md">
                                     <div className="BorderRight border-end-0">
                                         <h6 className="mb-2">Market Cap Rank</h6>
-                                        <p className="mb-2 text-white">19/block</p>
+                                        <p className="mb-2 text-white">{marketCapRank?marketCapRank:null}</p>
                                         <small>APR</small>
                                     </div>
                                 </div>
