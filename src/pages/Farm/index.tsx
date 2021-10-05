@@ -1,5 +1,6 @@
 import React from "react";
 import FireLogo from '../../assets/images/fire_logo.png'
+import TokenImg from '../../assets/images/img-collectibles-2.png'
 
 const FarmPage = () => {
     return (
@@ -70,43 +71,17 @@ const FarmPage = () => {
                                 <img className={'me-2'} width={'17'} src={FireLogo} alt={'Fire Logo'} />
                                 <h4 className={'FSize_18 text-white mb-0'}>PYR-MATIC</h4>
                             </div>
-                            <div className={'col-xxl-auto col-xl-auto col-lg-auto col-md-4 col-sm-4 col-7 mb-3 mb-lg-0'}>
-                                <label className={'d-block mb-1'}>Earned</label>
-                                <span className={'FSize_18'}>0</span>
+                            <div className={'col-xxl-auto col-xl-auto col-lg-auto col-md-4 col-sm-4 col-5 mb-3 mb-lg-0'}>
+                                <label className={'d-block mb-1'}>Status</label>
+                                <span className={'FSize_18 text-success'}>Open</span>
                             </div>
                             <div className={'col-xxl-auto col-xl-auto col-lg-auto col-md-4 col-sm-4 col-5 mb-3 mb-lg-0'}>
-                                <label className={'d-block mb-1'}>APR</label>
-                                <span className={'FSize_18 text-white'}>54.99%</span>
+                                <label className={'d-block mb-1'}>Max Participants</label>
+                                <span className={'FSize_18 text-white'}>54</span>
                             </div>
                             <div className={'col-xxl-auto col-xl-auto col-lg-3 col-md-4 col-sm-4 col-7 mb-3 mb-lg-0'}>
-                                <label className={'d-block mb-1'}>Liquidity</label>
-                                <span className={'FSize_18 text-white'}>$765,923,091</span>
-                                <button type="button" className="bg-transparent border-0 p-0 ms-2" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="Liquidity Tooltip on top">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                         fill="none" stroke="#888888"
-                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                         className="feather feather-help-circle">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                                    </svg>
-                                </button>
-                            </div>
-                            <div className={'col-xxl-auto col-xl-auto col-lg-auto col-md-4 col-sm-4 col-5 mb-3 mb-lg-0'}>
-                                <label className={'d-block mb-1'}>Multiplier</label>
-                                <span className={'FSize_18 text-white'}>40x</span>
-                                <button type="button" className="bg-transparent border-0 p-0 ms-2" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="Multiplier Tooltip on top">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                             fill="none" stroke="#888888"
-                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                             className="feather feather-help-circle">
-                                            <circle cx="12" cy="12" r="10"></circle>
-                                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                                        </svg>
-                                </button>
+                                <label className={'d-block mb-1'}>Lockup Duration</label>
+                                <span className={'FSize_18 text-white'}>Friday, November 5, 2020 15:54 AM</span>
                             </div>
                             <div className={'col-xxl-auto col-xl-auto col-lg-auto col-md-8 col-sm-8 col-7 mb-3 mb-lg-0'}>
                                 <button className="accordion-button shadow-none FSize_18 collapsed bg-transparent p-0 OrangeColor w-auto fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#FarmsCollapse_1"
@@ -119,8 +94,8 @@ const FarmPage = () => {
                     <div className={'BorderBottom'}>
                         <div id="FarmsCollapse_1" className="accordion-collapse collapse" data-bs-parent="#accordionFarms">
                             <div className="p-3 p-sm-4 px-xl-5 py-xl-4">
-                                <div className={'row justify-content-between'}>
-                                    <div className={'col-xxl-3 col-xl-3 col-lg-3 mb-3 mb-lg-0'}>
+                                <div className={'row align-items-center'}>
+                                    <div className={'col-xxl-3 col-xl-3 col-lg-3 mb-3 mb-lg-0 me-auto'}>
                                         <p><a href={"#"} className={'OrangeColor text-decoration-on-hover'}>
                                             Get PYR-ETH LP
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -176,29 +151,42 @@ const FarmPage = () => {
                                             Core
                                         </a>
                                     </div>
-                                    <div className={'col-xxl-4 col-xl-4 col-lg mb-3 mb-lg-0'}>
-                                        <div className="Prizes p-4">
-                                            <p className="text-white FSize_16">PYR Earned</p>
+                                    <div className={'col-xxl-3 col-xl-4 col-lg col-md me-5 mb-3 mb-lg-0'}>
+                                        <div className="Prizes p-4 h-100">
                                             <div className="row align-items-center">
-                                                <div className="col">
-                                                    <h3 className="ColorGrey BeforeNone mb-0">0.0</h3>
-                                                </div>
                                                 <div className="col-auto">
-                                                    <button type="button" className="btn BtnGrey py-2 px-3">
-                                                        Harvest
-                                                    </button>
+                                                    <img src={TokenImg} alt={'image'} className={'img-fluid TokenImg'} />
+                                                </div>
+                                                <div className="col">
+                                                    <p>Any Text Comes Here...</p>
+                                                    <p>Any Text Comes Here...</p>
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={'col-xxl-4 col-xl-4 col-lg mb-3 mb-lg-0'}>
-                                        <div className="Prizes p-4">
-                                            <p className="text-white FSize_16">Enable Farm</p>
-                                            <button type="button" className="btn BtnOrange py-2 px-3 w-100">
-                                                Enable
+                                    <div className={'col-xxl-4 col-xl-4 col-lg col-md mb-3 mb-lg-0'}>
+                                        <div className="Prizes p-4 h-100">
+                                            <div className={'d-flex justify-content-between mb-3 pe-3'}>
+                                                <p className="text-white FSize_16 mb-0">Add Minimum 10 LP Tokens</p>
+                                                <span><span className={'OrangeColor'}>10</span> ETH</span>
+                                            </div>
+                                            <input type="text" className={'form-control shadow-none border-0 w-100 mb-3'} placeholder={'Enter value here'} />
+                                            <button type="button" className="btn BtnOrange py-2 px-3 me-3">
+                                                Approve
+                                            </button>
+                                            <button type="button" className="btn BtnBorderOrange py-2 px-4">
+                                                Lock
                                             </button>
                                         </div>
                                     </div>
+                                    {/*This will show in case of Unlock Button*/}
+                                        {/*<div className={'col-xxl-4 col-xl-4 col-lg mb-3 mb-lg-0'}>
+                                            <button type="button" className="btn BtnBorderOrange py-2 px-4">
+                                                Unlock
+                                            </button>
+                                        </div>*/}
+                                    {/*End*/}
                                 </div>
                             </div>
                         </div>
@@ -207,45 +195,19 @@ const FarmPage = () => {
                         <div className={'row align-items-center justify-content-between gx-2'}>
                             <div className={'col-xxl-3 col-xl-3 col-lg-3 col-md-12 d-flex align-items-center'}>
                                 <img className={'me-2'} width={'17'} src={FireLogo} alt={'Fire Logo'} />
-                                <h4 className={'FSize_18 text-white mb-0'}>PYR-ETH</h4>
-                            </div>
-                            <div className={'col-xxl-auto col-xl-auto col-lg-auto col-md-4 col-sm-4 col-7 mb-3 mb-lg-0'}>
-                                <label className={'d-block mb-1'}>Earned</label>
-                                <span className={'FSize_18'}>0</span>
+                                <h4 className={'FSize_18 text-white mb-0'}>PYR-MATIC</h4>
                             </div>
                             <div className={'col-xxl-auto col-xl-auto col-lg-auto col-md-4 col-sm-4 col-5 mb-3 mb-lg-0'}>
-                                <label className={'d-block mb-1'}>APR</label>
-                                <span className={'FSize_18 text-white'}>54.99%</span>
+                                <label className={'d-block mb-1'}>Status</label>
+                                <span className={'FSize_18 text-danger'}>Closed</span>
+                            </div>
+                            <div className={'col-xxl-auto col-xl-auto col-lg-auto col-md-4 col-sm-4 col-5 mb-3 mb-lg-0'}>
+                                <label className={'d-block mb-1'}>Max Participants</label>
+                                <span className={'FSize_18 text-white'}>54</span>
                             </div>
                             <div className={'col-xxl-auto col-xl-auto col-lg-3 col-md-4 col-sm-4 col-7 mb-3 mb-lg-0'}>
-                                <label className={'d-block mb-1'}>Liquidity</label>
-                                <span className={'FSize_18 text-white'}>$765,923,091</span>
-                                <button type="button" className="bg-transparent border-0 p-0 ms-2" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="Liquidity Tooltip on top">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                         fill="none" stroke="#888888"
-                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                         className="feather feather-help-circle">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                                    </svg>
-                                </button>
-                            </div>
-                            <div className={'col-xxl-auto col-xl-auto col-lg-auto col-md-4 col-sm-4 col-5 mb-3 mb-lg-0'}>
-                                <label className={'d-block mb-1'}>Multiplier</label>
-                                <span className={'FSize_18 text-white'}>40x</span>
-                                <button type="button" className="bg-transparent border-0 p-0 ms-2" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="Multiplier Tooltip on top">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                             fill="none" stroke="#888888"
-                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                             className="feather feather-help-circle">
-                                            <circle cx="12" cy="12" r="10"></circle>
-                                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                                        </svg>
-                                </button>
+                                <label className={'d-block mb-1'}>Lockup Duration</label>
+                                <span className={'FSize_18 text-white'}>Friday, November 5, 2020 15:54 AM</span>
                             </div>
                             <div className={'col-xxl-auto col-xl-auto col-lg-auto col-md-8 col-sm-8 col-7 mb-3 mb-lg-0'}>
                                 <button className="accordion-button shadow-none FSize_18 collapsed bg-transparent p-0 OrangeColor w-auto fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#FarmsCollapse_2"
@@ -258,8 +220,8 @@ const FarmPage = () => {
                     <div className={'BorderBottom'}>
                         <div id="FarmsCollapse_2" className="accordion-collapse collapse" data-bs-parent="#accordionFarms">
                             <div className="p-3 p-sm-4 px-xl-5 py-xl-4">
-                                <div className={'row justify-content-between'}>
-                                    <div className={'col-xxl-3 col-xl-3 col-lg-3 mb-3 mb-lg-0'}>
+                                <div className={'row align-items-center'}>
+                                    <div className={'col-xxl-3 col-xl-3 col-lg-3 mb-3 mb-lg-0 me-auto'}>
                                         <p><a href={"#"} className={'OrangeColor text-decoration-on-hover'}>
                                             Get PYR-ETH LP
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -315,29 +277,42 @@ const FarmPage = () => {
                                             Core
                                         </a>
                                     </div>
-                                    <div className={'col-xxl-4 col-xl-4 col-lg mb-3 mb-lg-0'}>
-                                        <div className="Prizes p-4">
-                                            <p className="text-white FSize_16">PYR Earned</p>
+                                    <div className={'col-xxl-3 col-xl-4 col-lg col-md me-5 mb-3 mb-lg-0'}>
+                                        <div className="Prizes p-4 h-100">
                                             <div className="row align-items-center">
-                                                <div className="col">
-                                                    <h3 className="ColorGrey BeforeNone mb-0">0.0</h3>
-                                                </div>
                                                 <div className="col-auto">
-                                                    <button type="button" className="btn BtnGrey py-2 px-3">
-                                                        Harvest
-                                                    </button>
+                                                    <img src={TokenImg} alt={'image'} className={'img-fluid TokenImg'} />
+                                                </div>
+                                                <div className="col">
+                                                    <p>Any Text Comes Here...</p>
+                                                    <p>Any Text Comes Here...</p>
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={'col-xxl-4 col-xl-4 col-lg mb-3 mb-lg-0'}>
-                                        <div className="Prizes p-4">
-                                            <p className="text-white FSize_16">Enable Farm</p>
-                                            <button type="button" className="btn BtnOrange py-2 px-3 w-100">
-                                                Enable
+                                    <div className={'col-xxl-4 col-xl-4 col-lg col-md mb-3 mb-lg-0'}>
+                                        <div className="Prizes p-4 h-100">
+                                            <div className={'d-flex justify-content-between mb-3 pe-3'}>
+                                                <p className="text-white FSize_16 mb-0">Add Minimum 10 LP Tokens</p>
+                                                <span><span className={'OrangeColor'}>10</span> ETH</span>
+                                            </div>
+                                            <input type="text" className={'form-control shadow-none border-0 w-100 mb-3'} placeholder={'Enter value here'} />
+                                            <button type="button" className="btn BtnOrange py-2 px-3 me-3">
+                                                Approve
+                                            </button>
+                                            <button type="button" className="btn BtnBorderOrange py-2 px-4">
+                                                Lock
                                             </button>
                                         </div>
                                     </div>
+                                    {/*This will show in case of Unlock Button*/}
+                                    {/*<div className={'col-xxl-4 col-xl-4 col-lg mb-3 mb-lg-0'}>
+                                            <button type="button" className="btn BtnBorderOrange py-2 px-4">
+                                                Unlock
+                                            </button>
+                                        </div>*/}
+                                    {/*End*/}
                                 </div>
                             </div>
                         </div>

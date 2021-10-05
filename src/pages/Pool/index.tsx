@@ -12,7 +12,7 @@ import {StyledInternalLink, TYPE, HideSmall} from '../../theme'
 import {Text} from 'rebass'
 import Card from '../../components/Card'
 import {RowBetween, RowFixed} from '../../components/Row'
-import {ButtonPrimary, ButtonSecondary} from '../../components/Button'
+import {ButtonPrimary} from '../../components/Button'
 import {AutoColumn} from '../../components/Column'
 
 import {useActiveWeb3React} from '../../hooks'
@@ -46,8 +46,6 @@ const ButtonRow = styled(RowFixed)`
   gap: 8px;
   ${({theme}) => theme.mediaWidth.upToSmall`
     width: 100%;
-    flex-direction: row-reverse;
-    justify-content: space-between;
   `};
 `
 
@@ -58,12 +56,12 @@ const ResponsiveButtonPrimary = styled(ButtonPrimary)`
   `};
 `
 
-const ResponsiveButtonSecondary = styled(ButtonSecondary)`
+/*const ResponsiveButtonSecondary = styled(ButtonSecondary)`
   width: fit-content;
   ${({theme}) => theme.mediaWidth.upToSmall`
     width: 48%;
   `};
-`
+`*/
 
 const EmptyProposals = styled.div`
   border: 1px solid ${({theme}) => theme.text4};
@@ -166,9 +164,9 @@ export default function Pool() {
                                             </h5>
                                         </HideSmall>
                                         <ButtonRow>
-                                            <ResponsiveButtonSecondary as={Link} className="btn BtnBorderOrange shadow-none px-4 py-2" to="/create/ETH">
+                                            {/*<ResponsiveButtonSecondary as={Link} className="btn BtnBorderOrange shadow-none px-4 py-2" to="/create/ETH">
                                                 Create a pair
-                                            </ResponsiveButtonSecondary>
+                                            </ResponsiveButtonSecondary>*/}
                                             <ResponsiveButtonPrimary
                                                 id="join-pool-button"
                                                 as={Link}

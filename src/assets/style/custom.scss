@@ -99,7 +99,11 @@ a {
 .BorderBottom {
     border-bottom: solid 1px #282B30;
 }
-
+.TokenImg {
+    max-height: 200px;
+    max-width: 200px;
+    object-fit: cover;
+}
 .Prizes {
     background-color: #282B30;
     border-radius: 30px;
