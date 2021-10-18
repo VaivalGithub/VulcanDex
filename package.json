@@ -124,6 +124,7 @@
     "@uniswap/default-token-list": "^2.0.0",
     "node-sass": "4.14.1",
     "quickswap-sdk": "^3.0.8",
+    "react-toastify": "^8.0.3",
     "sass": "^1.38.2"
   }
 }

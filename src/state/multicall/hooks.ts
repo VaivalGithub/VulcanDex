@@ -234,6 +234,10 @@ export function useSingleCallResult(
   inputs?: OptionalMethodInputs,
   options?: ListenerOptions
 ): CallState {
+
+  console.log("hooks contract:",contract)
+  console.log("hooks methodName:",methodName)
+  console.log("hooks inputs:",inputs)
   const fragment = useMemo(() => contract?.interface?.getFunction(methodName), [contract, methodName])
 
   const calls = useMemo<Call[]>(() => {
@@ -249,7 +253,7 @@ export function useSingleCallResult(
 
   const result = useCallsData(calls, options)[0]
   const latestBlockNumber = useBlockNumber()
-
+console.log("hooks result:",result)
   return useMemo(() => {
     return toCallState(result, contract?.interface, fragment, latestBlockNumber)
   }, [result, contract, fragment, latestBlockNumber])

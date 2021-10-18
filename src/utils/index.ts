@@ -4,6 +4,8 @@ import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
 import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
+import PYR_MATIC_POOL1_ABI from '../constants/abis/pyrMaticPool1.json'
+
 import { ROUTER_ADDRESS } from '../constants'
 import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '@uniswap/sdk'
 import { TokenAddressMap } from '../state/lists/hooks'
@@ -103,6 +105,19 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
 export function getRouterContract(_: number, library: Web3Provider, account?: string): Contract {
   return getContract(ROUTER_ADDRESS, IUniswapV2Router02ABI, library, account)
 }
+
+
+export function getPYRMATIC_P1_Contract(_: number, library: Web3Provider, account?: string): Contract {
+  const PYRMATIC_P1 = '0xB3cC3dcc48E1B825b4628e9384829D04536C7b5F'
+  return getContract(PYRMATIC_P1, PYR_MATIC_POOL1_ABI, library, account)
+}
+
+
+export function getPYRLAVA_P1_Contract(_: number, library: Web3Provider, account?: string): Contract {
+  const PYRLAVA_P1 = '0xD229A6ed98a3370770549A66908af53Ec57A74b2'
+  return getContract(PYRLAVA_P1, PYR_MATIC_POOL1_ABI, library, account)
+}
+
 
 export function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // $& means the whole matched string

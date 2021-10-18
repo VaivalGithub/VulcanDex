@@ -25,8 +25,15 @@ import RemoveV1Exchange from './MigrateV1/RemoveV1Exchange'
 import Pool from './Pool'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
-import Home from './Home'
+import Home from './Home/index'
 import Farm from './Farm'
+import ConnectionPendingFarm from './Farm/ConnectionPending'
+
+
+import PYRMATIC_P1 from './Farm/Pool1-PYRMATIC'
+import PYRLAVA_P1 from './Farm/Pool1-PYRLAVA'
+
+
 import Staking from './Staking'
 import SyrupPools from './SyrupPools'
 import Collectibles from './Collectibles'
@@ -239,7 +246,7 @@ export default function App() {
                                 </a>
                             </li>*/}
                         </ul>
-                        {/*<div className="dropdown ForCollapseView text-center">
+                        <div className="dropdown ForCollapseView text-center">
                             <a href="#" id="SettingOptions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#888888"
                                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -293,7 +300,7 @@ export default function App() {
                                     <li><a className="dropdown-item px-2" href="#">Dutch</a></li>
                                 </ul>
                             </div>
-                        </div>*/}
+                        </div>
                     </div>
                     <ContentArea id="ContentArea">
                         <Popups/>
@@ -321,6 +328,7 @@ export default function App() {
                                        component={RedirectOldAddLiquidityPathStructure}/>
                                 <Route exact path="/create/:currencyIdA/:currencyIdB"
                                        component={RedirectDuplicateTokenIds}/>
+                               
                                 <Route exact strict path="/remove/v1/:address" component={RemoveV1Exchange}/>
                                 <Route exact strict path="/remove/:tokens"
                                        component={RedirectOldRemoveLiquidityPathStructure}/>
@@ -329,8 +337,23 @@ export default function App() {
                                 {/* <Route exact strict path="/migrate/v1" component={MigrateV1} /> */}
                                 {/* <Route exact strict path="/migrate/v1/:address" component={MigrateV1Exchange} /> */}
                                 <Route exact strict path="/uni/:currencyIdA/:currencyIdB" component={Manage}/>
-                                <Route exact strict path="/Farm"
-                                       component={Farm}/>
+                               
+                               
+                                {/* <Route exact strict path="/Farm"
+                                       component={Farm}/> */}
+                               
+                               
+                               <Route exact path="/Farm" component={Farm}/>
+                               {/* <Route exact path="/FarmDetails-PYRMATIC" component={ConnectedFarmDetails}/> */}
+
+                               
+       //                             <Route exact path="/FarmDetails-PYRMATIC" component={PYRMATIC_P1 }/>
+                               <Route exact path="/FarmDetails-PYRLAVA" component={PYRLAVA_P1 }/>
+
+                             
+                            
+                               
+                               
                                 <Route exact strict path="/Staking"
                                        component={StakingPage}/>
                                 <Route exact strict path="/SyrupPools"

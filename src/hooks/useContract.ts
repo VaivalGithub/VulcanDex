@@ -22,11 +22,16 @@ import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
 import { V1_EXCHANGE_ABI, V1_FACTORY_ABI, V1_FACTORY_ADDRESSES } from '../constants/v1'
 import { getContract } from '../utils'
 import { useActiveWeb3React } from './index'
+import PYR_MATIC_POOL1_ABI from '../constants/abis/pyrMaticPool1.json'
+import PYR_LAVA_POOL1_ABI from '../constants/abis/pyrLavaPool1.json'
+
+import pyrMaticLP from '../constants/abis/pyrMaticLP.json'
 
 // returns null on errors
 function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
+  console.log("useCOntract called....")
   const { library, account } = useActiveWeb3React()
-
+console.log("library:",library)
   return useMemo(() => {
     if (!address || !ABI || !library) return null
     try {
@@ -128,4 +133,19 @@ export function useSocksController(): Contract | null {
     UNISOCKS_ABI,
     false
   )
+}
+
+
+
+
+export function usePYRMATIC_POOL1_Contract(pairAddress?: string): Contract | null {
+  return useContract(pairAddress, PYR_MATIC_POOL1_ABI, true)
+}
+
+export function usePYRLAVA_POOL1_Contract(pairAddress?: string): Contract | null {
+  return useContract(pairAddress, PYR_LAVA_POOL1_ABI, true)
+}
+
+export function usePYRMATIC_LP(pairAddress?: string): Contract | null {
+  return useContract(pairAddress, pyrMaticLP, true)
 }

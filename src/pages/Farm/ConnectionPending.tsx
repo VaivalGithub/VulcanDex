@@ -1,6 +1,6 @@
 import React from "react";
 
-const FarmPage = () => {
+const ConnectionPendingFarm = () => {
     return (
         <div className="FarmPage pb-5 mb-5">
             <div className="FarmBanner p-3 p-sm-4 p-lg-5 text-white">
@@ -194,4 +194,4 @@ const FarmPage = () => {
     );
 }
 
-export default FarmPage;
+export default ConnectionPendingFarm;

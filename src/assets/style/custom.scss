@@ -104,6 +104,18 @@ a {
     max-width: 200px;
     object-fit: cover;
 }
+.z-index-11 {
+    z-index: 11;
+}
+.top-80 {
+    top: 80px;
+}
+.token-amount-input {
+    min-width: 100px;
+}
+.token-symbol-container {
+    font-size: 14px;
+}
 .Prizes {
     background-color: #282B30;
     border-radius: 30px;
@@ -508,6 +520,78 @@ a {
     background-color: #191817;
     width: 100px;
     height: 100px;
+}
+
+.ViewListingBox {
+    background-color: #1A1917;
+    box-shadow: 0px 0px 1px rgba(0,0,0,0.1), 0px 4px 8px rgba(0,0,0,0.4), 0px 16px 24px rgba(0,0,0,0.4), rgba(0,0,0,0.1);
+    border-radius: 30px;
+    .TradingPairBorder {
+        border: 1px solid #282B30;
+        border-radius: 15px;
+        .TradingPair {
+            background-color: #282B30;
+            box-shadow: 0px 3px 6px #0000003D;
+            border: 1px solid #282B30;
+            border-radius: 15px;
+            .PairImgs {
+                img {
+                    border-radius: 50%;
+                    &:first-child {
+                        margin-right: -18px;
+                    }
+                    &:last-child {
+                        margin-bottom: -10px;
+                    }
+                }
+            }
+        }
+    }
+    .RemoveListing {
+        .PairImgs {
+            position: relative;
+            top: -40px;
+            img {
+                border-radius: 50%;
+                &:first-child {
+                    margin-right: -38px;
+                }
+                &:last-child {
+                    margin-bottom: -10px;
+                }
+            }
+        }
+        .TokenDetail {
+            border: 1px solid #282B30;
+            border-radius: 15px;
+            .border-right {
+                border-right: 1px solid #282B30;
+            }
+        }
+        .BgBox {
+            background-color: #282B30;
+            box-shadow: 0px 3px 6px #0000003D;
+            border: 1px solid #282B30;
+            border-radius: 15px;
+            .form-control:disabled,
+            .form-control[readonly] {
+                background-color: #191817;
+                opacity: 1;
+            }
+        }
+    }
+}
+.BtnLight {
+    background-color: #50341E;
+    box-shadow: inset 0px -3px 0px #6E3814;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #FA7005;
+    &:hover {
+        background-color: #6F380E;
+        color: #e36715;
+    }
 }
 
 /*--- Responsive ---*/
