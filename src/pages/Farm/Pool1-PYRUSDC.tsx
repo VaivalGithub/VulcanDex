@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 //
 import TokenImg from '../../assets/images/PYRUSDC-POOL1.jpg'
 import TokenImg_P2 from '../../assets/images/PYRusdc_P2.jpg'
+import TokenImg_P3 from '../../assets/images/PYRusdc_P3.jpg'
+
 
 import { useCurrency } from '../../hooks/Tokens'
 import { Field } from '../../state/mint/actions'
@@ -36,6 +38,10 @@ const ConnectedFarmDetails = () => {
     const PYRUSDC_p2 = '0x97116DDD54691a3D355fe6881844F0834d791959'//'0x7e79f8FD7F67e612B61bc2735fC4053B17360cF2'
     let pyrUSDCPool2 = usePYRUSDC_POOL1_Contract(PYRUSDC_p2)
 
+
+    const PYRUSDC_p3 = '0x73c5fEA75b64469Fa70F3ECcC902a710708B5216'//'0x7e79f8FD7F67e612B61bc2735fC4053B17360cF2'
+    let pyrUSDCPool3 = usePYRUSDC_POOL1_Contract(PYRUSDC_p3)
+
     const { account, chainId, library } = useActiveWeb3React()
 
 
@@ -52,6 +58,13 @@ const ConnectedFarmDetails = () => {
     const [minAmountToLock_USDC_P2, setminAmountToLock_PYRUSDC_POOL2] = useState('');
     const [CurrentParticipants_USDC_P2, getCurrentParticipants_PYRUSDC_POOL2] = useState('');
     const [EndDate_USDC_P2, setEndDate_PYRUSDC_POOL2] = useState('');
+
+
+    const [EndJoinDate_USDC_P3, setEndJoinDate_PYRUSDC_POOL3] = useState('');
+    const [totalPoolParticipant_USDC_P3, setTotalPoolParticipant_PYRUSDC_POOL3] = useState('');
+    const [minAmountToLock_USDC_P3, setminAmountToLock_PYRUSDC_POOL3] = useState('');
+    const [CurrentParticipants_USDC_P3, getCurrentParticipants_PYRUSDC_POOL3] = useState('');
+    const [EndDate_USDC_P3, setEndDate_PYRUSDC_POOL3] = useState('');
 
 
     useEffect(
@@ -119,6 +132,48 @@ const ConnectedFarmDetails = () => {
                     getCurrentParticipants_PYRUSDC_POOL2(result1)
                 })
 
+
+
+
+            
+
+            
+
+            pyrUSDCPool3?.totalPoolParticipant()
+                .then((result2: any) => {
+                    setTotalPoolParticipant_PYRUSDC_POOL3(result2)
+                })
+
+            pyrUSDCPool3?.unlock_date()
+                .then((result1: any) => {
+                    setEndDate_PYRUSDC_POOL3(result1)
+                })
+
+
+
+            pyrUSDCPool3?.endJoin_date()
+                .then((result1: any) => {
+                    setEndJoinDate_PYRUSDC_POOL3(result1)
+                })
+
+
+            pyrUSDCPool3?.AmountToLock()
+                .then((result1: any) => {
+                    setminAmountToLock_PYRUSDC_POOL3(result1)
+                })
+
+            pyrUSDCPool3?.getCntLocksForToken()
+                .then((result1: any) => {
+                    getCurrentParticipants_PYRUSDC_POOL3(result1)
+                })
+
+
+
+
+
+
+
+
         },
         [] //useEffect will run only one time
         //if you pass a value to array, like this [data] than clearTimeout will run every time this value changes (useEffect re-run)
@@ -141,6 +196,19 @@ const ConnectedFarmDetails = () => {
 
     var endDate_p2 = new Date(0);
     endDate_p2.setUTCSeconds(Number(EndDate_USDC_P2));
+
+
+
+
+
+    var date_p3 = new Date(0); // The 0 there is the key, which sets the date to the epoch
+    date_p3.setUTCSeconds(Number(EndJoinDate_USDC_P3));
+    var currentStamp_p3 = Date.now().toString();
+
+    var endDate_p3 = new Date(0);
+    endDate_p3.setUTCSeconds(Number(EndDate_USDC_P3));
+
+
 
 
 
@@ -172,6 +240,21 @@ const ConnectedFarmDetails = () => {
     var poolOpenStatus_p2 = "Closed"
     poolOpenStatus_p2 = poolStatus_p2()
 
+
+
+
+
+    function poolStatus_p3() {
+
+
+        if (totalPoolParticipant_USDC_P3.toString() == CurrentParticipants_USDC_P3.toString()) { return "Closed" }
+        else if (currentStamp_p3 < EndJoinDate_USDC_P3) { return "Open" }
+        else { return "Closed" }
+    }
+
+
+    var poolOpenStatus_p3 = "Closed"
+    poolOpenStatus_p3 = poolStatus_p3()
 
     function toNonExponential(value: any) {
         // if value is not a number try to convert it to number
@@ -412,6 +495,96 @@ const ConnectedFarmDetails = () => {
         //   }
     }
 
+    async function LOCK_P3_func() {
+        const num = toNonExponential(Number(minAmountToLock_USDC_P3) / 10 ** 18)
+
+        if (formattedAmounts[Field.CURRENCY_B] != num) {
+
+
+            toast.error("Passed Amount:" + formattedAmounts[Field.CURRENCY_B] + " expected Amount:" + num, {
+
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+
+
+            })
+        }
+        else {
+
+            if (!chainId || !library || !account) return
+            const router = getPYR_P1_Contract(chainId, library, PYRUSDC_p3, account)
+            let estimate = router.estimateGas.lockLPTokenWithFixedTime
+            let args: Array<string | string[] | number>;
+            let method: (...args: any) => Promise<TransactionResponse>;
+
+            let value: BigNumber | null
+
+            //  alert("Lock called" + formattedAmounts[Field.CURRENCY_B])
+
+
+            //  alert("estimate:"+estimate)
+            method = router.lockLPTokenWithFixedTime
+
+            args = [
+                minAmountToLock_USDC_P3.toString(),
+                account,
+            ]
+            value = null
+
+
+
+
+
+            await estimate(...args, value ? { value } : {})
+                .then(estimatedGasLimit =>
+                    method(...args, {
+                        ...(value ? { value } : {}),
+                        gasLimit: calculateGasMargin(estimatedGasLimit)
+                    }).then(response => {
+                        // setAttemptingTxn(false)
+
+                        addTransaction(response, {
+                            summary:
+                                'Add ' +
+                                parsedAmounts[Field.CURRENCY_A]?.toSignificant(3) +
+                                ' ' +
+                                currencies[Field.CURRENCY_A]?.symbol +
+                                ' and ' +
+                                parsedAmounts[Field.CURRENCY_B]?.toSignificant(3) +
+                                ' ' +
+                                currencies[Field.CURRENCY_B]?.symbol
+                        })
+
+                        // setTxHash(response.hash)
+
+                        ReactGA.event({
+                            category: 'Locking',
+                            action: 'lockLPTokenWithFixedTime',
+                            label: [currencies[Field.CURRENCY_A]?.symbol, currencies[Field.CURRENCY_B]?.symbol].join('/')
+                        })
+                    })
+                )
+                .catch(error => {
+                    // setAttemptingTxn(false)
+                    // we only care if the error is something _other_ than the user rejected the tx
+                    if (error?.code !== 4001) {
+                        console.error(error)
+                    }
+                })
+
+        }
+
+        // setAttemptingTxn(true)
+
+        //   if(poolOpenStatus=="CLosed"){
+        //       alert("")
+        //   }
+    }
 
 
 
@@ -461,10 +634,12 @@ const ConnectedFarmDetails = () => {
     }
 
     const [approvalB, approveBCallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], PYRUSDC_p1)
-    // const [approvalB, approveBCallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], PYRUSDC_p2)
+//    const [approvalB, approveBCallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], PYRUSDC_p2)
 
     const [approvalB_p2, approveBCallback_p2] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], PYRUSDC_p2)
 
+
+    const [approvalB_p3, approveBCallback_p3] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], PYRUSDC_p3)
 
 
     return (
@@ -508,10 +683,165 @@ const ConnectedFarmDetails = () => {
                         </div>
                     </div>
                 </div>
-
+                <div className={'row text-white mb-4'}>
+                    <div className={'col-md-auto col-lg-auto col-xl-auto col-xxl-auto me-auto mb-3 mb-lg-0'}>
+                        <a href="#/Farm" className="text-uppercase text-white FSize_14">
+                            Go Back
+                            <svg width="25" height="25" className={'d-block mt-1'} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path fill="#EB7527" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
                 <div className={'BgDark border-radius-15 mb-4'}>
                     <div className={'row justify-content-between'}>
                         <div className={'col-sm-12 col-md-8 col-lg-8 col-xl-9 col-xxl-9'}>
+                            
+
+                           
+                            {/* 3rd pool */}
+
+                            <div className={'BorderBottom p-4'}>
+                                <div className={'row'}>
+                                    <div className={'col-xxl col-xl-6 col-lg-12 col-md-12 mb-3 mb-xl-0'}>
+                                        <div className="Prizes p-4 h-100">
+                                            <div className="row">
+                                                <div className="col-12 col-lg-auto col-xl-auto col-xxl-auto mb-3 mb-xxl-0">
+                                                    <img src={TokenImg_P3} alt={'image'} className={'img-fluid TokenImg'} />
+                                                </div>
+                                                <div className="col">
+                                                    <h4 style={{ color: "#79DF4E" }}>Arcadia Flag NFT</h4>
+                                                    <p className={'mb-0'}>
+                                                       
+                                                        *Users must use MyForge account address to receive NFT reward*</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={'col-xxl col-xl-6 col-lg-12 col-md-12 mb-3 mb-xl-0'}>
+
+                                        {poolOpenStatus_p3 == 'Open' ?
+                                            (
+                                                <div className="Prizes p-4 h-100">
+                                                    <div className={'d-flex justify-content-between mb-3 pe-3'}>
+                                                        <p className="text-white FSize_16 mb-0">Lock Limit</p>
+                                                        <span><span className={'OrangeColor'}>{toNonExponential(Number(minAmountToLock_USDC_P3) / 10 ** 18).toString()}</span> Vulcan-V2</span>
+                                                    </div>
+                                                    {/* minAmountToLock_P1 */}
+
+                                                    <CurrencyInputPanel
+                                                        value={formattedAmounts[Field.CURRENCY_B]}
+                                                        onUserInput={onFieldBInput}
+                                                        // onCurrencySelect={handleCurrencyBSelect}
+                                                        onMax={() => {
+                                                            onFieldBInput(maxAmounts[Field.CURRENCY_B]?.toExact() ?? '')
+                                                        }}
+                                                        showMaxButton={!atMaxAmounts[Field.CURRENCY_B]}
+                                                        currency={currencies[Field.CURRENCY_B]}
+                                                        id="add-liquidity-input-tokenb"
+                                                        showCommonBases
+                                                    />
+
+
+
+                                                    <AutoColumn gap={'md'}>
+                                                        {(
+
+                                                            approvalB_p3 === ApprovalState.NOT_APPROVED ||
+                                                            approvalB_p3 === ApprovalState.PENDING) &&
+                                                            isValid && (
+                                                                <RowBetween>
+
+                                                                    {(
+                                                                        <ButtonPrimary
+                                                                            onClick={approveBCallback_p3}
+                                                                            disabled={approvalB_p3 === ApprovalState.PENDING}
+                                                                        // width={approvalA !== ApprovalState.APPROVED ? '48%' : '100%'}
+                                                                        >
+                                                                            {approvalB_p3 === ApprovalState.PENDING ? (
+                                                                                <Dots>Approving {currencies[Field.CURRENCY_B]?.symbol}</Dots>
+                                                                            ) : (
+                                                                                'Approve2 ' + currencies[Field.CURRENCY_B]?.symbol
+                                                                            )}
+                                                                        </ButtonPrimary>
+                                                                    )}
+                                                                </RowBetween>
+                                                            )}
+                                                        <ButtonError
+                                                            onClick={() => LOCK_P3_func()
+
+                                                            }
+                                                            disabled={!isValid || approvalB_p3 !== ApprovalState.APPROVED}
+                                                            error={!isValid && !!parsedAmounts[Field.CURRENCY_B]}
+                                                        >
+                                                            <Text fontSize={20} fontWeight={500}>
+                                                                {error ?? 'Lock'}
+                                                            </Text>
+                                                        </ButtonError>
+                                                    </AutoColumn>
+
+                                                    {/* <input type="text" className={'form-control shadow-none border-0 w-100 mb-3'} placeholder={'Enter value here'} />
+                                     <button type="button" className="btn BtnOrange py-2 px-3 me-3 mb-3 mb-xxl-0">
+                                         Approve
+                                     </button>
+                                     <button type="button" className="btn BtnBorderOrange py-2 px-4">
+                                         Lock
+                                     </button> */}
+                                                </div>
+
+                                            ) : "Pool Closed"
+                                        }
+                                    </div>
+                                    <div className={'col-xl-12 col-lg-12 col-md-12 mb-3 mt-4 mt-xxl-4 mb-xl-0'}>
+                                        <div className={'row h-100'}>
+                                            <div className={'ccol-xxl-4 col-xl-4 col-lg-6 mb-3'}>
+                                                <label className={'d-block mb-1'}>Joinup Duration</label>
+                                                <span className={'FSize_18 text-white'}>{date_p3.toString()}</span>
+                                            </div>
+                                            <div className={'col-xxl-4 col-xl-4 col-lg-6 mb-3'}>
+                                                <label className={'d-block mb-1'}>Lockup Duration</label>
+                                                <span className={'FSize_18 text-white'}>{endDate_p3.toString()}</span>
+                                            </div>
+                                            <div className="col-12"></div>
+                                            <div className={'col-xxl-4 col-xl-4 col-lg-6 col-md-4 col-sm-4 col-6 mb-3'}>
+
+                                                <label className={'d-block mb-1'}>Max Participants</label>
+                                                <span className={'FSize_18 text-white'}>{totalPoolParticipant_USDC_P3.toString()}</span>
+                                            </div>
+
+                                            <div className={'col-xxl-4 col-xl-4 col-lg-6 col-md-4 col-sm-4 col-6 mb-3 '}>
+                                                <label className={'d-block mb-1'}>Current Participants</label>
+                                                <span className={'FSize_18 text-white'}>{CurrentParticipants_USDC_P3.toString()}</span>
+                                            </div>
+
+
+                                            <div className={'cool-xxl-4 col-xl-4 col-lg-6 col-md-4 col-sm-4 col-6 mb-3'}>
+                                                <label className={'d-block mb-1'}>Status</label>
+                                                {poolOpenStatus_p3.toString()=='Open'?
+                                               <span className={'FSize_18 text-success'}>{poolOpenStatus_p3.toString()}</span>
+                                            :
+                                            
+                                             <span className={'FSize_18 text-danger'}>{poolOpenStatus_p3.toString()}</span>
+                                             }
+                                            </div>
+
+                                            <p><a href={account != null ? `#/LockingDetails/PYR-USDC/POOL-3/${PYRUSDC_p3}/${lp}` : '#/Farm'} className={'OrangeColor text-decoration-on-hover'}>
+
+                                                LockingDetails
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    viewBox="0 0 24 24" fill="none" stroke="#EB7527"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    className="ms-2">
+                                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                                </svg>
+                                            </a></p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
 
@@ -633,7 +963,12 @@ const ConnectedFarmDetails = () => {
 
                                             <div className={'cool-xxl-4 col-xl-4 col-lg-6 col-md-4 col-sm-4 col-6 mb-3'}>
                                                 <label className={'d-block mb-1'}>Status</label>
-                                                <span className={'FSize_18 text-danger'}>{poolOpenStatus_p2.toString()}</span>
+                                                {poolOpenStatus_p2.toString()=='Open'?
+                                               <span className={'FSize_18 text-success'}>{poolOpenStatus_p2.toString()}</span>
+                                            :
+                                            
+                                             <span className={'FSize_18 text-danger'}>{poolOpenStatus_p2.toString()}</span>
+                                             }
                                             </div>
 
                                             <p><a href={account != null ? `#/LockingDetails/PYR-USDC/POOL-2/${PYRUSDC_p2}/${lp}` : '#/Farm'} className={'OrangeColor text-decoration-on-hover'}>
@@ -771,7 +1106,12 @@ const ConnectedFarmDetails = () => {
 
                                             <div className={'cool-xxl-4 col-xl-4 col-lg-6 col-md-4 col-sm-4 col-6 mb-3'}>
                                                 <label className={'d-block mb-1'}>Status</label>
-                                                <span className={'FSize_18 text-danger'}>{poolOpenStatus.toString()}</span>
+                                             {poolOpenStatus.toString()=='Open'?
+                                               <span className={'FSize_18 text-success'}>{poolOpenStatus.toString()}</span>
+                                            :
+                                            
+                                             <span className={'FSize_18 text-danger'}>{poolOpenStatus.toString()}</span>
+                                             }
                                             </div>
 
                                             <p><a href={account != null ? `#/LockingDetails/PYR-USDC/POOL-1/${PYRUSDC_p1}/${lp}` : '#/Farm'} className={'OrangeColor text-decoration-on-hover'}>

@@ -87,7 +87,7 @@ const FarmPage = () => {
                             </div>             
                             <div className={'col-xxl-6 col-xl-6 col-lg-6 col-md-4 col-sm-4 col-5 mb-3 mb-lg-0'}>
                                 <label className={'d-block mb-1'}>No. of Pools</label>
-                                <span className={'FSize_18 text-white'}>02</span>
+                                <span className={'FSize_18 text-white'}>03</span>
                             </div>
                             {/* <div className={'col-xxl-auto col-xl-auto col-lg-auto col-md-4 col-sm-4 col-5 mb-3 mb-lg-0'}>
                                 <label className={'d-block mb-1'}>Max Participants</label>
@@ -110,7 +110,7 @@ const FarmPage = () => {
                             </div>
                             <div className={'col-xxl-6 col-xl-6 col-lg-6 col-md-4 col-sm-4 col-5 mb-3 mb-lg-0'}>
                                 <label className={'d-block mb-1'}>No. of Pools</label>
-                                <span className={'FSize_18 text-white'}>02</span>
+                                <span className={'FSize_18 text-white'}>03</span>
                             </div>
                             {/* <div className={'col-xxl-auto col-xl-auto col-lg-auto col-md-4 col-sm-4 col-5 mb-3 mb-lg-0'}>
                                 <label className={'d-block mb-1'}>Max Participants</label>
@@ -155,7 +155,7 @@ const FarmPage = () => {
                             </div>
                             <div className={'col-xxl-6 col-xl-6 col-lg-6 col-md-4 col-sm-4 col-5 mb-3 mb-lg-0'}>
                                 <label className={'d-block mb-1'}>No. of Pools</label>
-                                <span className={'FSize_18 text-white'}>02</span>
+                                <span className={'FSize_18 text-white'}>03</span>
                             </div>
                             {/* <div className={'col-xxl-auto col-xl-auto col-lg-auto col-md-4 col-sm-4 col-5 mb-3 mb-lg-0'}>
                                 <label className={'d-block mb-1'}>Max Participants</label>
